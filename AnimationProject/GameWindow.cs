@@ -84,9 +84,8 @@ namespace AnimationProject
 
         #region Event Handlers
 
-        private void GameWindow_Load(object sender, EventArgs e)
+        private void GameWindow_Load(object sender, EventArgs e) // セットアップ
         {
-            // セットアップ
             Button_Start.Visible = true;
             Label_CountDown.Visible = false;
             Label_Start.Visible = false;
@@ -95,7 +94,7 @@ namespace AnimationProject
             BposY = Ball.Location.Y;
         }
 
-        private void Button_Start_Click(object sender, EventArgs e)
+        private void Button_Start_Click(object sender, EventArgs e) // スタートボタン
         {
             Button_Start.Visible = false;
             Label_CountDown.Visible = true;
@@ -105,7 +104,7 @@ namespace AnimationProject
             Label_CountDown.Text = Convert.ToString(countdown);
         }
 
-        private void Timer_CountDown_Tick(object sender, EventArgs e)
+        private void Timer_CountDown_Tick(object sender, EventArgs e) // 開始前カウントダウン
         {
             --countdown;
             Label_CountDown.Text = Convert.ToString(countdown);
@@ -125,13 +124,11 @@ namespace AnimationProject
             }
         }
 
-        private void Timer_Time_Tick(object sender, EventArgs e)
+        private void Timer_Time_Tick(object sender, EventArgs e) // ゲーム内タイマー
         {
             --timer;
             Label_Time.Text = Convert.ToString(timer);
         }
-
-        #endregion
 
         private void Timer_Game_Tick(object sender, EventArgs e) // ゲームの主要動作
         {
@@ -141,15 +138,32 @@ namespace AnimationProject
 
             for (int i = 0; i < 28; i++)
             {
+                if (CheckCollision(Bar, Boxes[i]))
+                {
+                    BmovY = -BmovY;
+                }
+
                 if (CheckCollision(Ball, Boxes[i]))
                 {
                     point += Btokuten;
                     Label_Point.Text = Convert.ToString(point);
-                    BmovX = -BmovX;
-                    BmovY = -BmovY;
+
+                    Random random = new Random();
+                    int randnum = random.Next(2);
+                    if (randnum == 0)
+                    {
+                        BmovX = -BmovX;
+                    }
+                    else
+                    {
+                        BmovY += BmovY;
+                    }
                 }
             }
 
         }
+
+        #endregion
+
     }
 }
