@@ -18,11 +18,12 @@ namespace AnimationProject
         int countdown = 3;
         int timer = 100;
         int point = 0;
+        int Ptokuten = 1;
 
-        int BposX, BposY;
-        int BmovX = 5;
-        int BmovY = -5;
-        int Btokuten = 1;
+        int[] BposX = new int[2];
+        int[] BposY = new int[2];
+        int[] BmovX = new int[2];
+        int[] BmovY = new int[2];        
 
         // 配列でpictureboxを管理
         private PictureBox[] Boxes;
@@ -80,6 +81,14 @@ namespace AnimationProject
             return rect1.IntersectsWith(rect2);
         }
 
+        private void SetPictureBoxProperties(PictureBox pictureBox, int index, int movX, int movY)
+        {
+            BposX[index] = pictureBox.Location.X;
+            BposY[index] = pictureBox.Location.Y;
+            BmovX[index] = movX;
+            BmovY[index] = movY;
+        }
+
         #endregion
 
         #region Event Handlers
@@ -90,8 +99,8 @@ namespace AnimationProject
             Label_CountDown.Visible = false;
             Label_Start.Visible = false;
             Panel.Visible = false;
-            BposX = Ball.Location.X;
-            BposY = Ball.Location.Y;
+            SetPictureBoxProperties(Ball, 0, 5, -5);
+            SetPictureBoxProperties(Bar, 1, 5, 0);
         }
 
         private void Button_Start_Click(object sender, EventArgs e) // スタートボタン
@@ -130,34 +139,30 @@ namespace AnimationProject
             Label_Time.Text = Convert.ToString(timer);
         }
 
+        private void GameWindow_KeyDown(object sender, KeyEventArgs e)
+        {
+
+        }
+
         private void Timer_Game_Tick(object sender, EventArgs e) // ゲームの主要動作
         {
-            BposX += BmovX;
-            BposY += BmovY;            
-            Ball.Location = new Point(BposX, BposY);
+            BposX[0] += BmovX[0];
+            BposY[0] += BmovY[0];            
+            Ball.Location = new Point(BposX[0], BposY[0]);
 
             for (int i = 0; i < 28; i++)
             {
                 if (CheckCollision(Bar, Boxes[i]))
                 {
-                    BmovY = -BmovY;
+                    BmovY[1] = -BmovY[1];
                 }
 
                 if (CheckCollision(Ball, Boxes[i]))
                 {
-                    point += Btokuten;
+                    point += Ptokuten;
                     Label_Point.Text = Convert.ToString(point);
-
-                    Random random = new Random();
-                    int randnum = random.Next(2);
-                    if (randnum == 0)
-                    {
-                        BmovX = -BmovX;
-                    }
-                    else
-                    {
-                        BmovY += BmovY;
-                    }
+                    //TODO: 未破壊のみ衝突
+                    //TODO: 衝突後の処理
                 }
             }
 
