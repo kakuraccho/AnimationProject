@@ -541,8 +541,9 @@
             // 
             // EdgeRight
             // 
+            this.EdgeRight.Anchor = ((System.Windows.Forms.AnchorStyles)(((System.Windows.Forms.AnchorStyles.Top | System.Windows.Forms.AnchorStyles.Bottom) 
+            | System.Windows.Forms.AnchorStyles.Right)));
             this.EdgeRight.BackColor = System.Drawing.Color.Black;
-            this.EdgeRight.Dock = System.Windows.Forms.DockStyle.Right;
             this.EdgeRight.Enabled = false;
             this.EdgeRight.Location = new System.Drawing.Point(2300, 0);
             this.EdgeRight.Name = "EdgeRight";
@@ -552,8 +553,9 @@
             // 
             // EdgeLeft
             // 
+            this.EdgeLeft.Anchor = ((System.Windows.Forms.AnchorStyles)(((System.Windows.Forms.AnchorStyles.Top | System.Windows.Forms.AnchorStyles.Bottom) 
+            | System.Windows.Forms.AnchorStyles.Left)));
             this.EdgeLeft.BackColor = System.Drawing.Color.Black;
-            this.EdgeLeft.Dock = System.Windows.Forms.DockStyle.Left;
             this.EdgeLeft.Enabled = false;
             this.EdgeLeft.Location = new System.Drawing.Point(0, 0);
             this.EdgeLeft.Name = "EdgeLeft";
@@ -563,8 +565,9 @@
             // 
             // EdgeTop
             // 
+            this.EdgeTop.Anchor = ((System.Windows.Forms.AnchorStyles)(((System.Windows.Forms.AnchorStyles.Top | System.Windows.Forms.AnchorStyles.Left) 
+            | System.Windows.Forms.AnchorStyles.Right)));
             this.EdgeTop.BackColor = System.Drawing.Color.Black;
-            this.EdgeTop.Dock = System.Windows.Forms.DockStyle.Top;
             this.EdgeTop.Enabled = false;
             this.EdgeTop.Location = new System.Drawing.Point(10, 0);
             this.EdgeTop.Name = "EdgeTop";
@@ -576,9 +579,9 @@
             // 
             this.OutZone.BackColor = System.Drawing.Color.Red;
             this.OutZone.Dock = System.Windows.Forms.DockStyle.Bottom;
-            this.OutZone.Location = new System.Drawing.Point(10, 1135);
+            this.OutZone.Location = new System.Drawing.Point(0, 1135);
             this.OutZone.Name = "OutZone";
-            this.OutZone.Size = new System.Drawing.Size(2290, 10);
+            this.OutZone.Size = new System.Drawing.Size(2310, 10);
             this.OutZone.TabIndex = 39;
             this.OutZone.TabStop = false;
             // 
@@ -637,6 +640,7 @@
             this.WindowState = System.Windows.Forms.FormWindowState.Maximized;
             this.Load += new System.EventHandler(this.GameWindow_Load);
             this.KeyDown += new System.Windows.Forms.KeyEventHandler(this.GameWindow_KeyDown);
+            this.KeyUp += new System.Windows.Forms.KeyEventHandler(this.GameWindow_KeyUp);
             ((System.ComponentModel.ISupportInitialize)(this.pictureBox1)).EndInit();
             ((System.ComponentModel.ISupportInitialize)(this.pictureBox2)).EndInit();
             ((System.ComponentModel.ISupportInitialize)(this.pictureBox3)).EndInit();

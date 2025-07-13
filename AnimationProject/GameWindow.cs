@@ -99,8 +99,8 @@ namespace AnimationProject
             Label_CountDown.Visible = false;
             Label_Start.Visible = false;
             Panel.Visible = false;
-            SetPictureBoxProperties(Ball, 0, 5, -5);
-            SetPictureBoxProperties(Bar, 1, 5, 0);
+            SetPictureBoxProperties(Ball, 0, 3, -5);
+            SetPictureBoxProperties(Bar, 1, 0, 0);
         }
 
         private void Button_Start_Click(object sender, EventArgs e) // スタートボタン
@@ -141,14 +141,30 @@ namespace AnimationProject
 
         private void GameWindow_KeyDown(object sender, KeyEventArgs e)
         {
+            if (e.KeyCode == Keys.A)
+            {
+                BmovX[1] = -5;
+            }
+            else if (e.KeyCode == Keys.D)
+            {
+                BmovX[1] = 5;
+            }
+        }
 
+        private void GameWindow_KeyUp(object sender, KeyEventArgs e)
+        {
+            BmovX[1] = 0;
         }
 
         private void Timer_Game_Tick(object sender, EventArgs e) // ゲームの主要動作
         {
+            // ball,barの座標更新
             BposX[0] += BmovX[0];
-            BposY[0] += BmovY[0];            
+            BposY[0] += BmovY[0]; 
+            BposX[1] += BmovX[1];
+            BposY[1] += BmovY[1];
             Ball.Location = new Point(BposX[0], BposY[0]);
+            Bar.Location = new Point(BposX[1], BposY[1]);
 
             for (int i = 0; i < 28; i++)
             {
@@ -164,11 +180,34 @@ namespace AnimationProject
                     //TODO: 未破壊のみ衝突
                     //TODO: 衝突後の処理
                 }
-            }
 
+                // 壁,バーの反射処理
+                if (CheckCollision(EdgeLeft, Ball))
+                {
+                    BmovX[0] = -BmovX[0];
+                    Ball.Left = EdgeLeft.Right;
+                }
+
+                if (CheckCollision(EdgeRight, Ball))
+                {
+                    BmovX[0] = -BmovX[0];
+                    Ball.Left = EdgeRight.Left - Ball.Width;
+                }
+
+                if (CheckCollision(EdgeTop, Ball))
+                {
+                    BmovY[0] = -BmovY[0];
+                    Ball.Top = EdgeTop.Bottom;
+                }
+
+                if (CheckCollision(Bar, Ball))
+                {
+                    BmovY[0] = -BmovY[0];
+                    Ball.Top = Bar.Top - Ball.Width;
+                }
+            }
         }
 
         #endregion
-
     }
 }
