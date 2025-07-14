@@ -124,20 +124,30 @@ namespace AnimationProject
 
         private int ChangeColor(PictureBox pictureBox, int index)
         {
+            int BoxHPValue = BoxHP[index];
             --BoxHP[index];
-            
-            if (BoxHP[index] == 2)
+
+            switch (BoxHPValue)
             {
-                return 2;
+                case 3:
+                    return 3;
+                case 2:
+                    return 2;
+                case 1:
+                    return 1;
+                default:
+                    return 0;
             }
-            else if (BoxHP[index] == 1)
-            {
-                return 1;
-            }
-            else
-            {
-                return 0;
-            }
+        }
+
+        private void CoordinateRefresh(object sender, EventArgs e)
+        {
+            BposX[0] += BmovX[0];
+            BposY[0] += BmovY[0];
+            BposX[1] += BmovX[1];
+            BposY[1] += BmovY[1];
+            Ball.Location = new Point(BposX[0], BposY[0]);
+            Bar.Location = new Point(BposX[1], BposY[1]);
         }
 
         #endregion
@@ -190,7 +200,7 @@ namespace AnimationProject
             Label_Time.Text = Convert.ToString(timer);
         }
 
-        private void GameWindow_KeyDown(object sender, KeyEventArgs e)
+        private void GameWindow_KeyDown(object sender, KeyEventArgs e) // キーボード操作
         {
             if (e.KeyCode == Keys.A)
             {
@@ -202,7 +212,7 @@ namespace AnimationProject
             }
         }
 
-        private void GameWindow_KeyUp(object sender, KeyEventArgs e)
+        private void GameWindow_KeyUp(object sender, KeyEventArgs e) // キーボード操作
         {
             BmovX[1] = 0;
         }
@@ -210,12 +220,8 @@ namespace AnimationProject
         private void Timer_Game_Tick(object sender, EventArgs e) // ゲームの主要動作
         {
             // ball,barの座標更新
-            BposX[0] += BmovX[0];
-            BposY[0] += BmovY[0]; 
-            BposX[1] += BmovX[1];
-            BposY[1] += BmovY[1];
-            Ball.Location = new Point(BposX[0], BposY[0]);
-            Bar.Location = new Point(BposX[1], BposY[1]);
+            CoordinateRefresh(sender, e);
+
 
             for (int i = 0; i < 28; i++)
             {
