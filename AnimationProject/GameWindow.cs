@@ -23,7 +23,8 @@ namespace AnimationProject
         int[] BposX = new int[2];
         int[] BposY = new int[2];
         int[] BmovX = new int[2];
-        int[] BmovY = new int[2];        
+        int[] BmovY = new int[2];
+        int[] BoxHP = new int[28];
 
         // 配列でpictureboxを管理
         private PictureBox[] Boxes;
@@ -37,6 +38,8 @@ namespace AnimationProject
             #region PictureBox配列
 
             Boxes = new PictureBox[28];
+            
+            // picturebox本体
             Boxes[0] = pictureBox1;
             Boxes[1] = pictureBox2;
             Boxes[2] = pictureBox3;
@@ -66,6 +69,36 @@ namespace AnimationProject
             Boxes[26] = pictureBox27;
             Boxes[27] = pictureBox28;
 
+            // pictureboxのHP
+            BoxHP[0] = 3;
+            BoxHP[1] = 3;
+            BoxHP[2] = 3;
+            BoxHP[3] = 3;
+            BoxHP[4] = 3;
+            BoxHP[5] = 3;
+            BoxHP[6] = 3;
+            BoxHP[7] = 3;
+            BoxHP[8] = 3;
+            BoxHP[9] = 3;
+            BoxHP[10] = 3;
+            BoxHP[11] = 3;
+            BoxHP[12] = 3;
+            BoxHP[13] = 3;
+            BoxHP[14] = 3;
+            BoxHP[15] = 3;
+            BoxHP[16] = 3;
+            BoxHP[17] = 3;
+            BoxHP[18] = 3;
+            BoxHP[19] = 3;
+            BoxHP[20] = 3;
+            BoxHP[21] = 3;
+            BoxHP[22] = 3;
+            BoxHP[23] = 3;
+            BoxHP[24] = 3;
+            BoxHP[25] = 3;
+            BoxHP[26] = 3;
+            BoxHP[27] = 3;
+
             #endregion
         }
 
@@ -87,6 +120,24 @@ namespace AnimationProject
             BposY[index] = pictureBox.Location.Y;
             BmovX[index] = movX;
             BmovY[index] = movY;
+        }
+
+        private int ChangeColor(PictureBox pictureBox, int index)
+        {
+            --BoxHP[index];
+            
+            if (BoxHP[index] == 2)
+            {
+                return 2;
+            }
+            else if (BoxHP[index] == 1)
+            {
+                return 1;
+            }
+            else
+            {
+                return 0;
+            }
         }
 
         #endregion
@@ -168,18 +219,55 @@ namespace AnimationProject
 
             for (int i = 0; i < 28; i++)
             {
-                if (CheckCollision(Bar, Boxes[i]))
-                {
-                    BmovY[1] = -BmovY[1];
-                }
-
+                // ブロックの衝突,反射処理
                 if (CheckCollision(Ball, Boxes[i]))
                 {
-                    point += Ptokuten;
-                    Label_Point.Text = Convert.ToString(point);
-                    //TODO: 未破壊のみ衝突
-                    //TODO: 衝突後の処理
+                    // ボールの中心位置
+                    int ballCenterX = Ball.Left + Ball.Width / 2;
+                    int ballCenterY = Ball.Top + Ball.Height / 2;
+
+                    //ブロックの境界
+                    int boxLeft = Boxes[i].Left;
+                    int boxRight = Boxes[i].Right;
+                    int boxTop = Boxes[i].Top;
+                    int boxBottom = Boxes[i].Bottom;
+
+                    // 衝突判定（どの面に近いかで判定）
+                    int distToLeft = Math.Abs(ballCenterX - boxLeft);
+                    int distToRight = Math.Abs(ballCenterX - boxRight);
+                    int distToTop = Math.Abs(ballCenterY - boxTop);
+                    int distToBottom = Math.Abs(ballCenterY - boxBottom);
+
+                    int minHorizontal = Math.Min(distToLeft, distToRight);
+                    int minVertical = Math.Min(distToTop, distToBottom);
+
+                    if (minHorizontal < minVertical)
+                    {
+                        // 左右の面に衝突
+                        BmovX[0] = -BmovX[0];
+                    }
+                    else
+                    {
+                        // 上下の面に衝突
+                        BmovY[0] = -BmovY[0];
+                    }
+
+                    // 衝突後の処理
+                    if (ChangeColor(Boxes[i], i) == 2)
+                    {
+                        Boxes[i].BackColor = Color.DarkRed;
+                    }
+                    else if (ChangeColor(Boxes[i], i) == 1)
+                    {
+                        Boxes[i].BackColor = Color.Blue;
+                    }
+                    else if (ChangeColor(Boxes[i], i) == 0)
+                    {
+                        Boxes[i].Visible = false;
+                        Boxes[i].Location = new Point(this.ClientSize.Width, this.ClientSize.Height);
+                    }
                 }
+
 
                 // 壁,バーの反射処理
                 if (CheckCollision(EdgeLeft, Ball))
@@ -203,7 +291,7 @@ namespace AnimationProject
                 if (CheckCollision(Bar, Ball))
                 {
                     BmovY[0] = -BmovY[0];
-                    Ball.Top = Bar.Top - Ball.Width;
+                    Ball.Top = Bar.Top - 2 * Ball.Width;
                 }
             }
         }
