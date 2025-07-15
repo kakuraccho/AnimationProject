@@ -122,7 +122,7 @@ namespace AnimationProject
             BmovY[index] = movY;
         }
 
-        private int ChangeColor(PictureBox pictureBox, int index)
+        private void ChangeColor(PictureBox pictureBox, int index)
         {
             int BoxHPValue = BoxHP[index];
             --BoxHP[index];
@@ -130,13 +130,20 @@ namespace AnimationProject
             switch (BoxHPValue)
             {
                 case 3:
-                    return 3;
+                    pictureBox.BackColor = Color.Yellow;
+                    break;
                 case 2:
-                    return 2;
+                    pictureBox.BackColor = Color.AliceBlue;
+                    break;
                 case 1:
-                    return 1;
+                    pictureBox.BackColor= Color.DarkRed;
+                    break;
+                case 0:
+                    Boxes[index].Visible = false;
+                    Boxes[index].Location = new Point(this.ClientSize.Width, this.ClientSize.Height);
+                    break;
                 default:
-                    return 0;
+                    break;
             }
         }
 
@@ -154,7 +161,8 @@ namespace AnimationProject
 
         #region Event Handlers
 
-        private void GameWindow_Load(object sender, EventArgs e) // セットアップ
+        // ---セットアップ---
+        private void GameWindow_Load(object sender, EventArgs e)
         {
             Button_Start.Visible = true;
             Label_CountDown.Visible = false;
@@ -164,7 +172,8 @@ namespace AnimationProject
             SetPictureBoxProperties(Bar, 1, 0, 0);
         }
 
-        private void Button_Start_Click(object sender, EventArgs e) // スタートボタン
+        // ---スタートボタン---
+        private void Button_Start_Click(object sender, EventArgs e)
         {
             Button_Start.Visible = false;
             Label_CountDown.Visible = true;
@@ -174,7 +183,8 @@ namespace AnimationProject
             Label_CountDown.Text = Convert.ToString(countdown);
         }
 
-        private void Timer_CountDown_Tick(object sender, EventArgs e) // 開始前カウントダウン
+        // ---開始前カウントダウン---
+        private void Timer_CountDown_Tick(object sender, EventArgs e)
         {
             --countdown;
             Label_CountDown.Text = Convert.ToString(countdown);
@@ -194,38 +204,15 @@ namespace AnimationProject
             }
         }
 
-        private void Timer_Time_Tick(object sender, EventArgs e) // ゲーム内タイマー
-        {
-            --timer;
-            Label_Time.Text = Convert.ToString(timer);
-        }
-
-        private void GameWindow_KeyDown(object sender, KeyEventArgs e) // キーボード操作
-        {
-            if (e.KeyCode == Keys.A)
-            {
-                BmovX[1] = -5;
-            }
-            else if (e.KeyCode == Keys.D)
-            {
-                BmovX[1] = 5;
-            }
-        }
-
-        private void GameWindow_KeyUp(object sender, KeyEventArgs e) // キーボード操作
-        {
-            BmovX[1] = 0;
-        }
-
-        private void Timer_Game_Tick(object sender, EventArgs e) // ゲームの主要動作
+        // ---主要動作---
+        private void Timer_Game_Tick(object sender, EventArgs e)
         {
             // ball,barの座標更新
             CoordinateRefresh(sender, e);
 
-
             for (int i = 0; i < 28; i++)
             {
-                // ブロックの衝突,反射処理
+                // ---ブロックの衝突,反射処理---
                 if (CheckCollision(Ball, Boxes[i]))
                 {
                     // ボールの中心位置
@@ -259,19 +246,7 @@ namespace AnimationProject
                     }
 
                     // 衝突後の処理
-                    if (ChangeColor(Boxes[i], i) == 2)
-                    {
-                        Boxes[i].BackColor = Color.DarkRed;
-                    }
-                    else if (ChangeColor(Boxes[i], i) == 1)
-                    {
-                        Boxes[i].BackColor = Color.Blue;
-                    }
-                    else if (ChangeColor(Boxes[i], i) == 0)
-                    {
-                        Boxes[i].Visible = false;
-                        Boxes[i].Location = new Point(this.ClientSize.Width, this.ClientSize.Height);
-                    }
+                    ChangeColor(Boxes[i],i);
                 }
 
 
@@ -301,6 +276,32 @@ namespace AnimationProject
                 }
             }
         }
+
+        // ---ゲーム内ティック---
+        private void Timer_Time_Tick(object sender, EventArgs e)
+        {
+            --timer;
+            Label_Time.Text = Convert.ToString(timer);
+        }
+
+        // ---キーボード操作---
+        private void GameWindow_KeyDown(object sender, KeyEventArgs e)
+        {
+            if (e.KeyCode == Keys.A)
+            {
+                BmovX[1] = -5;
+            }
+            else if (e.KeyCode == Keys.D)
+            {
+                BmovX[1] = 5;
+            }
+        }
+
+        private void GameWindow_KeyUp(object sender, KeyEventArgs e)
+        {
+            BmovX[1] = 0;
+        }
+
 
         #endregion
     }
