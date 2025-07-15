@@ -52,6 +52,12 @@
     <Compile Include="Config.Designer.cs">
       <DependentUpon>Config.cs</DependentUpon>
     </Compile>
+    <Compile Include="GameResult.cs">
+      <SubType>Form</SubType>
+    </Compile>
+    <Compile Include="GameResult.Designer.cs">
+      <DependentUpon>GameResult.cs</DependentUpon>
+    </Compile>
     <Compile Include="Title.cs">
       <SubType>Form</SubType>
     </Compile>
@@ -68,6 +74,9 @@
     <Compile Include="Properties\AssemblyInfo.cs" />
     <EmbeddedResource Include="Config.resx">
       <DependentUpon>Config.cs</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="GameResult.resx">
+      <DependentUpon>GameResult.cs</DependentUpon>
     </EmbeddedResource>
     <EmbeddedResource Include="Title.resx">
       <DependentUpon>Title.cs</DependentUpon>

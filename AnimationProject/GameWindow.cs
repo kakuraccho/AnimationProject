@@ -14,7 +14,6 @@ namespace AnimationProject
     {
         #region Variable
 
-        // 変数定義
         int countdown = 3;
         int timer = 100;
         int point = 0;
@@ -26,6 +25,9 @@ namespace AnimationProject
         int[] BmovY = new int[2];
         int[] BoxHP = new int[28];
 
+        // ボール,バーの初期位置保存
+        Point[] Spoints = new Point[2];
+
         // 配列でpictureboxを管理
         private PictureBox[] Boxes;
 
@@ -34,6 +36,7 @@ namespace AnimationProject
         public GameWindow()
         {
             InitializeComponent();
+            this.Name = "GameWindow";
 
             #region PictureBox配列
 
@@ -110,7 +113,7 @@ namespace AnimationProject
             Rectangle rect1 = new Rectangle(pb1.Location, pb1.Size);
             Rectangle rect2 = new Rectangle(pb2.Location, pb2.Size);
 
-            //　Rectangle同士が交差(衝突)しているかを判定
+            // Rectangle同士が交差(衝突)しているかを判定
             return rect1.IntersectsWith(rect2);
         }
 
@@ -120,6 +123,7 @@ namespace AnimationProject
             BposY[index] = pictureBox.Location.Y;
             BmovX[index] = movX;
             BmovY[index] = movY;
+            Spoints[index] = pictureBox.Location;
         }
 
         private void ChangeColor(PictureBox pictureBox, int index)
@@ -155,6 +159,16 @@ namespace AnimationProject
             BposY[1] += BmovY[1];
             Ball.Location = new Point(BposX[0], BposY[0]);
             Bar.Location = new Point(BposX[1], BposY[1]);
+        }
+
+        private void EndGame(object sender, EventArgs e)
+        {
+            Ball.Location = Spoints[0];
+            Bar.Location = Spoints[1];
+            Timer_Game.Enabled = false;
+            Timer_Time.Enabled = false;
+            GameResult gameResult = new GameResult();
+            gameResult.ShowDialog();
         }
 
         #endregion
@@ -207,8 +221,7 @@ namespace AnimationProject
         // ---主要動作---
         private void Timer_Game_Tick(object sender, EventArgs e)
         {
-            // ball,barの座標更新
-            CoordinateRefresh(sender, e);
+            CoordinateRefresh(sender, e); // ball,barの座標更新
 
             for (int i = 0; i < 28; i++)
             {
@@ -249,8 +262,7 @@ namespace AnimationProject
                     ChangeColor(Boxes[i],i);
                 }
 
-
-                // 壁,バーの反射処理
+                // ---壁,バーの反射処理---
                 if (CheckCollision(EdgeLeft, Ball))
                 {
                     BmovX[0] = -BmovX[0];
@@ -274,6 +286,12 @@ namespace AnimationProject
                     BmovY[0] = -BmovY[0];
                     Ball.Top = Bar.Top - 2 * Ball.Width;
                 }
+
+                // ---ゲームオーバー---
+                if (CheckCollision(OutZone, Ball))
+                {
+                    EndGame(sender, e);
+                }
             }
         }
 
@@ -282,6 +300,12 @@ namespace AnimationProject
         {
             --timer;
             Label_Time.Text = Convert.ToString(timer);
+            
+            // ---時間切れ---
+            if (timer == 0)
+            {
+                EndGame(sender, e);
+            }
         }
 
         // ---キーボード操作---

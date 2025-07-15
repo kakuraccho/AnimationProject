@@ -15,6 +15,7 @@ namespace AnimationProject
         public Title()
         {
             InitializeComponent();
+            this.Name = "Title";
         }
 
         private void Button_start_Click(object sender, EventArgs e)
