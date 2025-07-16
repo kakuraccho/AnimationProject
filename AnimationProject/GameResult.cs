@@ -17,6 +17,7 @@ namespace AnimationProject
         public GameResult(int point)
         {
             InitializeComponent();
+            _receivedPoint = point;
         }
 
         private void GameResult_Load(object sender, EventArgs e)

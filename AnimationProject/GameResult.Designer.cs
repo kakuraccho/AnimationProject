@@ -43,7 +43,7 @@
             | System.Windows.Forms.AnchorStyles.Right)));
             this.label1.AutoSize = true;
             this.label1.Font = new System.Drawing.Font("MS UI Gothic", 40F);
-            this.label1.Location = new System.Drawing.Point(768, 312);
+            this.label1.Location = new System.Drawing.Point(758, 312);
             this.label1.Name = "label1";
             this.label1.Size = new System.Drawing.Size(701, 107);
             this.label1.TabIndex = 0;
@@ -51,15 +51,14 @@
             // 
             // Label_Point
             // 
-            this.Label_Point.Anchor = ((System.Windows.Forms.AnchorStyles)(((System.Windows.Forms.AnchorStyles.Top | System.Windows.Forms.AnchorStyles.Left) 
-            | System.Windows.Forms.AnchorStyles.Right)));
-            this.Label_Point.AutoSize = true;
+            this.Label_Point.Anchor = System.Windows.Forms.AnchorStyles.Top;
+            this.Label_Point.BackColor = System.Drawing.SystemColors.Control;
             this.Label_Point.Font = new System.Drawing.Font("MS UI Gothic", 50F);
-            this.Label_Point.Location = new System.Drawing.Point(1521, 290);
+            this.Label_Point.Location = new System.Drawing.Point(1277, 289);
             this.Label_Point.Name = "Label_Point";
-            this.Label_Point.Size = new System.Drawing.Size(258, 134);
+            this.Label_Point.Size = new System.Drawing.Size(288, 134);
             this.Label_Point.TabIndex = 1;
-            this.Label_Point.Text = "000";
+            this.Label_Point.Text = "0";
             this.Label_Point.TextAlign = System.Drawing.ContentAlignment.MiddleRight;
             // 
             // label3
@@ -68,7 +67,7 @@
             | System.Windows.Forms.AnchorStyles.Right)));
             this.label3.AutoSize = true;
             this.label3.Font = new System.Drawing.Font("MS UI Gothic", 40F);
-            this.label3.Location = new System.Drawing.Point(1790, 312);
+            this.label3.Location = new System.Drawing.Point(1800, 312);
             this.label3.Name = "label3";
             this.label3.Size = new System.Drawing.Size(400, 107);
             this.label3.TabIndex = 2;
@@ -80,7 +79,7 @@
             | System.Windows.Forms.AnchorStyles.Right)));
             this.label2.AutoSize = true;
             this.label2.Font = new System.Drawing.Font("MS UI Gothic", 40F);
-            this.label2.Location = new System.Drawing.Point(1019, 529);
+            this.label2.Location = new System.Drawing.Point(1009, 529);
             this.label2.Name = "label2";
             this.label2.Size = new System.Drawing.Size(450, 107);
             this.label2.TabIndex = 3;
@@ -88,13 +87,12 @@
             // 
             // Label_HighScore
             // 
-            this.Label_HighScore.Anchor = ((System.Windows.Forms.AnchorStyles)(((System.Windows.Forms.AnchorStyles.Top | System.Windows.Forms.AnchorStyles.Left) 
-            | System.Windows.Forms.AnchorStyles.Right)));
-            this.Label_HighScore.AutoSize = true;
+            this.Label_HighScore.Anchor = System.Windows.Forms.AnchorStyles.Top;
+            this.Label_HighScore.BackColor = System.Drawing.SystemColors.Control;
             this.Label_HighScore.Font = new System.Drawing.Font("MS UI Gothic", 50F);
-            this.Label_HighScore.Location = new System.Drawing.Point(1521, 506);
+            this.Label_HighScore.Location = new System.Drawing.Point(1276, 502);
             this.Label_HighScore.Name = "Label_HighScore";
-            this.Label_HighScore.Size = new System.Drawing.Size(258, 134);
+            this.Label_HighScore.Size = new System.Drawing.Size(289, 134);
             this.Label_HighScore.TabIndex = 4;
             this.Label_HighScore.Text = "000";
             this.Label_HighScore.TextAlign = System.Drawing.ContentAlignment.MiddleRight;
@@ -105,7 +103,7 @@
             | System.Windows.Forms.AnchorStyles.Right)));
             this.label5.AutoSize = true;
             this.label5.Font = new System.Drawing.Font("MS UI Gothic", 40F);
-            this.label5.Location = new System.Drawing.Point(1790, 529);
+            this.label5.Location = new System.Drawing.Point(1800, 529);
             this.label5.Name = "label5";
             this.label5.Size = new System.Drawing.Size(152, 107);
             this.label5.TabIndex = 5;
