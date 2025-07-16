@@ -130,6 +130,8 @@ namespace AnimationProject
         {
             int BoxHPValue = BoxHP[index];
             --BoxHP[index];
+            point += Ptokuten;
+            Label_Point.Text = Convert.ToString(point);
 
             switch (BoxHPValue)
             {
@@ -166,7 +168,7 @@ namespace AnimationProject
             Bar.Location = Spoints[1];
             Timer_Game.Enabled = false;
             Timer_Time.Enabled = false;
-            GameResult gameResult = new GameResult();
+            GameResult gameResult = new GameResult(point);
             gameResult.ShowDialog();
         }
 

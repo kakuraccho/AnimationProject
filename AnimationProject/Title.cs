@@ -36,7 +36,7 @@ namespace AnimationProject
 
         private void button1_Click(object sender, EventArgs e)
         {
-            GameResult gameResult = new GameResult();
+            GameResult gameResult = new GameResult(000);
             this.Hide();
             gameResult.ShowDialog();
             this.Show();

@@ -12,9 +12,16 @@ namespace AnimationProject
 {
     public partial class GameResult : Form
     {
-        public GameResult()
+        private int _receivedPoint;
+
+        public GameResult(int point)
         {
             InitializeComponent();
+        }
+
+        private void GameResult_Load(object sender, EventArgs e)
+        {
+            Label_Point.Text = Convert.ToString(_receivedPoint);
         }
 
         private void CloseAllFormsExcept(string formName)
@@ -34,9 +41,5 @@ namespace AnimationProject
             CloseAllFormsExcept("Title");
         }
 
-        private void GameResult_Load(object sender, EventArgs e)
-        {
-
-        }
     }
 }
