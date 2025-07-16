@@ -143,8 +143,7 @@ namespace AnimationProject
                     pictureBox.BackColor= Color.DarkRed;
                     break;
                 case 0:
-                    Boxes[index].Visible = false;
-                    Boxes[index].Location = new Point(this.ClientSize.Width, this.ClientSize.Height);
+                    pictureBox.Visible = false;
                     break;
                 default:
                     break;
@@ -225,74 +224,146 @@ namespace AnimationProject
 
             for (int i = 0; i < 28; i++)
             {
-                // ---ブロックの衝突,反射処理---
+                // ---ブロックとの衝突,反射処理---
                 if (CheckCollision(Ball, Boxes[i]))
                 {
                     // ボールの中心位置
                     int ballCenterX = Ball.Left + Ball.Width / 2;
                     int ballCenterY = Ball.Top + Ball.Height / 2;
 
-                    //ブロックの境界
+                    // ブロックの境界
                     int boxLeft = Boxes[i].Left;
                     int boxRight = Boxes[i].Right;
                     int boxTop = Boxes[i].Top;
                     int boxBottom = Boxes[i].Bottom;
 
                     // 衝突判定（どの面に近いかで判定）
-                    int distToLeft = Math.Abs(ballCenterX - boxLeft);
-                    int distToRight = Math.Abs(ballCenterX - boxRight);
-                    int distToTop = Math.Abs(ballCenterY - boxTop);
-                    int distToBottom = Math.Abs(ballCenterY - boxBottom);
+                    int overlapLeft = Math.Abs(Ball.Right - boxLeft);
+                    int overlapRight = Math.Abs(Ball.Left - boxRight);
+                    int overlapTop = Math.Abs(Ball.Bottom - boxTop);
+                    int overlapBottom = Math.Abs(Ball.Top - boxBottom);
 
-                    int minHorizontal = Math.Min(distToLeft, distToRight);
-                    int minVertical = Math.Min(distToTop, distToBottom);
+                    bool collidedFromHorizontal = false;
 
-                    if (minHorizontal < minVertical)
+                    // ボールの移動方向とオーバーラップを考慮して反射方向を決定
+                    if (BmovX[0] > 0 && overlapLeft < overlapTop && overlapLeft < overlapBottom)
                     {
-                        // 左右の面に衝突
                         BmovX[0] = -BmovX[0];
+                        Ball.Left = boxLeft - Ball.Width;
+                        BposX[0] = Ball.Left;
+                        collidedFromHorizontal = true;
                     }
-                    else
+
+                    else if (BmovX[0] < 0 && overlapRight < overlapTop && overlapRight < overlapBottom)
                     {
-                        // 上下の面に衝突
-                        BmovY[0] = -BmovY[0];
+                        BmovX[0] = -BmovX[0];
+                        Ball.Left = boxRight;
+                        BposX[0] = Ball.Left;
+                        collidedFromHorizontal = true;
                     }
 
-                    // 衝突後の処理
-                    ChangeColor(Boxes[i],i);
-                }
+                    else if (BmovY[0] > 0 && overlapTop < overlapLeft && overlapTop < overlapRight)
+                    {
+                        BmovY[0] = -BmovY[0];
+                        Ball.Top = boxTop - Ball.Height;
+                        BposY[0] = Ball.Top;
+                    }
 
-                // ---壁,バーの反射処理---
-                if (CheckCollision(EdgeLeft, Ball))
-                {
-                    BmovX[0] = -BmovX[0];
-                    Ball.Left = EdgeLeft.Right;
-                }
+                    else if (BmovY[0] < 0 && overlapBottom < overlapLeft && overlapBottom < overlapRight)
+                    {
+                        BmovY[0] = -BmovY[0];
+                        Ball.Top = boxBottom;
+                        BposY[0] = Ball.Top;
+                    }
 
-                if (CheckCollision(EdgeRight, Ball))
-                {
-                    BmovX[0] = -BmovX[0];
-                    Ball.Left = EdgeRight.Left - Ball.Width;
-                }
+                    else // 角に衝突した場合や、上記の条件に当てはまらない場合（一般的な反射）
+                    {
+                        if (overlapLeft < overlapRight && overlapLeft < overlapTop && overlapLeft < overlapBottom)
+                        {
+                            BmovX[0] = -BmovX[0];
+                            Ball.Left = boxLeft - Ball.Width;
+                            BposX[0] = Ball.Left;
+                        }
 
-                if (CheckCollision(EdgeTop, Ball))
-                {
-                    BmovY[0] = -BmovY[0];
-                    Ball.Top = EdgeTop.Bottom;
-                }
+                        else if (overlapRight < overlapLeft && overlapRight < overlapTop && overlapRight < overlapBottom)
+                        {
+                            BmovX[0] = -BmovX[0];
+                            Ball.Left = boxRight;
+                            BposX[0] = Ball.Left;
+                        }
 
-                if (CheckCollision(Bar, Ball))
-                {
-                    BmovY[0] = -BmovY[0];
-                    Ball.Top = Bar.Top - 2 * Ball.Width;
-                }
+                        else if (overlapTop < overlapBottom && overlapTop < overlapLeft && overlapTop < overlapRight)
+                        {
+                            BmovY[0] = -BmovY[0];
+                            Ball.Top = boxTop - Ball.Height;
+                            BposY[0] = Ball.Top;
+                        }
 
-                // ---ゲームオーバー---
-                if (CheckCollision(OutZone, Ball))
-                {
-                    EndGame(sender, e);
+                        else if (overlapBottom < overlapTop && overlapBottom < overlapLeft && overlapBottom < overlapRight)
+                        {
+                            BmovY[0] = -BmovY[0];
+                            Ball.Top = boxBottom;
+                            BposY[0] = Ball.Top;
+                        }
+
+                        else
+                        {
+                            // どちらの面からの衝突か判断が難しい場合、Y方向を優先して反転（一般的なブレイクアウトの挙動）
+                            BmovY[0] = -BmovY[0];
+                        }
+                    }
+
+                    if (Boxes[i].Visible == false)
+                    {
+                        continue;
+                    }
+
+                    // 衝突後の処理（HP減少と色変更）
+                    ChangeColor(Boxes[i], i);
+                    break; // 1フレームで複数のブロックに衝突しないように、一度衝突したらループを抜ける
                 }
             }
+
+            // ---壁,バーの反射処理---
+            // こちらも同様に、めり込み防止のための位置調整を追加
+            if (CheckCollision(EdgeLeft, Ball))
+            {
+                BmovX[0] = -BmovX[0];
+                Ball.Left = EdgeLeft.Right; // 左端に押し戻す
+                BposX[0] = Ball.Left;
+            }
+
+            if (CheckCollision(EdgeRight, Ball))
+            {
+                BmovX[0] = -BmovX[0];
+                Ball.Left = EdgeRight.Left - Ball.Width; // 右端に押し戻す
+                BposX[0] = Ball.Left;
+            }
+
+            if (CheckCollision(EdgeTop, Ball))
+            {
+                BmovY[0] = -BmovY[0];
+                Ball.Top = EdgeTop.Bottom; // 上端に押し戻す
+                BposY[0] = Ball.Top;
+            }
+
+            if (CheckCollision(Bar, Ball))
+            {
+                BmovY[0] = -BmovY[0];
+                // バーの動きを考慮して、ボールがバーにめり込まないように調整
+                if (Ball.Bottom > Bar.Top)
+                {
+                    Ball.Top = Bar.Top - Ball.Height;
+                    BposY[0] = Ball.Top;
+                }
+            }
+
+            // ---ゲームオーバー---
+            if (CheckCollision(OutZone, Ball))
+            {
+                EndGame(sender, e);
+            }
+
         }
 
         // ---ゲーム内ティック---

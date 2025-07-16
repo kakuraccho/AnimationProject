@@ -33,5 +33,13 @@ namespace AnimationProject
             config.ShowDialog();
             this.Show();
         }
+
+        private void button1_Click(object sender, EventArgs e)
+        {
+            GameResult gameResult = new GameResult();
+            this.Hide();
+            gameResult.ShowDialog();
+            this.Show();
+        }
     }
 }

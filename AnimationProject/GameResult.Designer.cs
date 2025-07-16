@@ -39,9 +39,11 @@
             // 
             // label1
             // 
+            this.label1.Anchor = ((System.Windows.Forms.AnchorStyles)(((System.Windows.Forms.AnchorStyles.Top | System.Windows.Forms.AnchorStyles.Left) 
+            | System.Windows.Forms.AnchorStyles.Right)));
             this.label1.AutoSize = true;
             this.label1.Font = new System.Drawing.Font("MS UI Gothic", 40F);
-            this.label1.Location = new System.Drawing.Point(378, 193);
+            this.label1.Location = new System.Drawing.Point(768, 312);
             this.label1.Name = "label1";
             this.label1.Size = new System.Drawing.Size(701, 107);
             this.label1.TabIndex = 0;
@@ -49,9 +51,11 @@
             // 
             // Label_Point
             // 
+            this.Label_Point.Anchor = ((System.Windows.Forms.AnchorStyles)(((System.Windows.Forms.AnchorStyles.Top | System.Windows.Forms.AnchorStyles.Left) 
+            | System.Windows.Forms.AnchorStyles.Right)));
             this.Label_Point.AutoSize = true;
             this.Label_Point.Font = new System.Drawing.Font("MS UI Gothic", 50F);
-            this.Label_Point.Location = new System.Drawing.Point(1131, 171);
+            this.Label_Point.Location = new System.Drawing.Point(1521, 290);
             this.Label_Point.Name = "Label_Point";
             this.Label_Point.Size = new System.Drawing.Size(258, 134);
             this.Label_Point.TabIndex = 1;
@@ -60,9 +64,11 @@
             // 
             // label3
             // 
+            this.label3.Anchor = ((System.Windows.Forms.AnchorStyles)(((System.Windows.Forms.AnchorStyles.Top | System.Windows.Forms.AnchorStyles.Left) 
+            | System.Windows.Forms.AnchorStyles.Right)));
             this.label3.AutoSize = true;
             this.label3.Font = new System.Drawing.Font("MS UI Gothic", 40F);
-            this.label3.Location = new System.Drawing.Point(1400, 193);
+            this.label3.Location = new System.Drawing.Point(1790, 312);
             this.label3.Name = "label3";
             this.label3.Size = new System.Drawing.Size(400, 107);
             this.label3.TabIndex = 2;
@@ -70,9 +76,11 @@
             // 
             // label2
             // 
+            this.label2.Anchor = ((System.Windows.Forms.AnchorStyles)(((System.Windows.Forms.AnchorStyles.Top | System.Windows.Forms.AnchorStyles.Left) 
+            | System.Windows.Forms.AnchorStyles.Right)));
             this.label2.AutoSize = true;
             this.label2.Font = new System.Drawing.Font("MS UI Gothic", 40F);
-            this.label2.Location = new System.Drawing.Point(629, 410);
+            this.label2.Location = new System.Drawing.Point(1019, 529);
             this.label2.Name = "label2";
             this.label2.Size = new System.Drawing.Size(450, 107);
             this.label2.TabIndex = 3;
@@ -80,9 +88,11 @@
             // 
             // Label_HighScore
             // 
+            this.Label_HighScore.Anchor = ((System.Windows.Forms.AnchorStyles)(((System.Windows.Forms.AnchorStyles.Top | System.Windows.Forms.AnchorStyles.Left) 
+            | System.Windows.Forms.AnchorStyles.Right)));
             this.Label_HighScore.AutoSize = true;
             this.Label_HighScore.Font = new System.Drawing.Font("MS UI Gothic", 50F);
-            this.Label_HighScore.Location = new System.Drawing.Point(1131, 387);
+            this.Label_HighScore.Location = new System.Drawing.Point(1521, 506);
             this.Label_HighScore.Name = "Label_HighScore";
             this.Label_HighScore.Size = new System.Drawing.Size(258, 134);
             this.Label_HighScore.TabIndex = 4;
@@ -91,9 +101,11 @@
             // 
             // label5
             // 
+            this.label5.Anchor = ((System.Windows.Forms.AnchorStyles)(((System.Windows.Forms.AnchorStyles.Top | System.Windows.Forms.AnchorStyles.Left) 
+            | System.Windows.Forms.AnchorStyles.Right)));
             this.label5.AutoSize = true;
             this.label5.Font = new System.Drawing.Font("MS UI Gothic", 40F);
-            this.label5.Location = new System.Drawing.Point(1400, 410);
+            this.label5.Location = new System.Drawing.Point(1790, 529);
             this.label5.Name = "label5";
             this.label5.Size = new System.Drawing.Size(152, 107);
             this.label5.TabIndex = 5;
@@ -102,9 +114,9 @@
             // Button_Remove
             // 
             this.Button_Remove.Font = new System.Drawing.Font("MS UI Gothic", 60F);
-            this.Button_Remove.Location = new System.Drawing.Point(681, 660);
+            this.Button_Remove.Location = new System.Drawing.Point(1028, 755);
             this.Button_Remove.Name = "Button_Remove";
-            this.Button_Remove.Size = new System.Drawing.Size(881, 216);
+            this.Button_Remove.Size = new System.Drawing.Size(925, 216);
             this.Button_Remove.TabIndex = 7;
             this.Button_Remove.Text = "Remove";
             this.Button_Remove.UseVisualStyleBackColor = true;
@@ -115,16 +127,18 @@
             this.AutoScaleDimensions = new System.Drawing.SizeF(13F, 24F);
             this.AutoScaleMode = System.Windows.Forms.AutoScaleMode.Font;
             this.ClientSize = new System.Drawing.Size(2310, 1145);
-            this.Controls.Add(this.Button_Remove);
-            this.Controls.Add(this.label5);
-            this.Controls.Add(this.Label_HighScore);
-            this.Controls.Add(this.label2);
-            this.Controls.Add(this.label3);
             this.Controls.Add(this.Label_Point);
             this.Controls.Add(this.label1);
+            this.Controls.Add(this.Button_Remove);
+            this.Controls.Add(this.label5);
+            this.Controls.Add(this.label3);
+            this.Controls.Add(this.label2);
+            this.Controls.Add(this.Label_HighScore);
+            this.DoubleBuffered = true;
+            this.KeyPreview = true;
             this.Name = "GameResult";
-            this.StartPosition = System.Windows.Forms.FormStartPosition.CenterScreen;
             this.Text = "Form1";
+            this.WindowState = System.Windows.Forms.FormWindowState.Maximized;
             this.Load += new System.EventHandler(this.GameResult_Load);
             this.ResumeLayout(false);
             this.PerformLayout();
