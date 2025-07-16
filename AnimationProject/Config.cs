@@ -16,5 +16,10 @@ namespace AnimationProject
         {
             InitializeComponent();
         }
+
+        public class GameSetting
+        {
+
+        }
     }
 }
