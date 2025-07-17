@@ -14,15 +14,34 @@ namespace AnimationProject
     {
         private int _receivedPoint;
 
+        private JsonManager _gameSettingManager;
+        private GameSetting _currentGameSetting;
+
         public GameResult(int point)
         {
             InitializeComponent();
             _receivedPoint = point;
+            _gameSettingManager = new JsonManager("settings.json");
+            _currentGameSetting = _gameSettingManager.LoadOrDefault(new GameSetting());
         }
 
         private void GameResult_Load(object sender, EventArgs e)
         {
+            Label_NewHighscore.Visible = false;
             Label_Point.Text = Convert.ToString(_receivedPoint);
+
+            if (_currentGameSetting.HighScore <= _receivedPoint)
+            {
+                _currentGameSetting.HighScore = _receivedPoint;
+                
+                if (_gameSettingManager.Save(_currentGameSetting))
+                {
+                    Label_NewHighscore.Visible = true;
+                }
+            }
+            
+            Label_HighScore.Text = Convert.ToString(_currentGameSetting.HighScore);
+            
         }
 
         private void CloseAllFormsExcept(string formName)

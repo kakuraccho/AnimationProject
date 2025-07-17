@@ -32,7 +32,6 @@
             this.label2 = new System.Windows.Forms.Label();
             this.label3 = new System.Windows.Forms.Label();
             this.label4 = new System.Windows.Forms.Label();
-            this.label5 = new System.Windows.Forms.Label();
             this.label6 = new System.Windows.Forms.Label();
             this.Button_Save = new System.Windows.Forms.Button();
             this.Button_Cansel = new System.Windows.Forms.Button();
@@ -42,6 +41,8 @@
             this.Label_MoveValue = new System.Windows.Forms.Label();
             this.Label_BarValue = new System.Windows.Forms.Label();
             this.Label_SEValue = new System.Windows.Forms.Label();
+            this.Label_SvCol = new System.Windows.Forms.Label();
+            this.Button_Reset = new System.Windows.Forms.Button();
             ((System.ComponentModel.ISupportInitialize)(this.TrackBar_Move)).BeginInit();
             ((System.ComponentModel.ISupportInitialize)(this.TrackBar_Bar)).BeginInit();
             ((System.ComponentModel.ISupportInitialize)(this.TrackBar_SE)).BeginInit();
@@ -91,23 +92,12 @@
             this.label4.TabIndex = 4;
             this.label4.Text = "SE音量";
             // 
-            // label5
-            // 
-            this.label5.Anchor = System.Windows.Forms.AnchorStyles.Top;
-            this.label5.AutoSize = true;
-            this.label5.Font = new System.Drawing.Font("MS UI Gothic", 25F);
-            this.label5.Location = new System.Drawing.Point(271, 609);
-            this.label5.Name = "label5";
-            this.label5.Size = new System.Drawing.Size(423, 67);
-            this.label5.TabIndex = 5;
-            this.label5.Text = "アイテムの有無";
-            // 
             // label6
             // 
             this.label6.Anchor = System.Windows.Forms.AnchorStyles.Top;
             this.label6.AutoSize = true;
             this.label6.Font = new System.Drawing.Font("MS UI Gothic", 25F);
-            this.label6.Location = new System.Drawing.Point(1287, 443);
+            this.label6.Location = new System.Drawing.Point(352, 590);
             this.label6.Name = "label6";
             this.label6.Size = new System.Drawing.Size(342, 67);
             this.label6.TabIndex = 6;
@@ -118,7 +108,7 @@
             this.Button_Save.Anchor = System.Windows.Forms.AnchorStyles.Top;
             this.Button_Save.BackColor = System.Drawing.SystemColors.Info;
             this.Button_Save.Font = new System.Drawing.Font("MS UI Gothic", 30F);
-            this.Button_Save.Location = new System.Drawing.Point(698, 935);
+            this.Button_Save.Location = new System.Drawing.Point(351, 922);
             this.Button_Save.Name = "Button_Save";
             this.Button_Save.Size = new System.Drawing.Size(460, 149);
             this.Button_Save.TabIndex = 7;
@@ -131,7 +121,7 @@
             this.Button_Cansel.Anchor = System.Windows.Forms.AnchorStyles.Top;
             this.Button_Cansel.BackColor = System.Drawing.SystemColors.Window;
             this.Button_Cansel.Font = new System.Drawing.Font("MS UI Gothic", 30F);
-            this.Button_Cansel.Location = new System.Drawing.Point(1330, 935);
+            this.Button_Cansel.Location = new System.Drawing.Point(1617, 922);
             this.Button_Cansel.Name = "Button_Cansel";
             this.Button_Cansel.Size = new System.Drawing.Size(397, 149);
             this.Button_Cansel.TabIndex = 8;
@@ -209,11 +199,38 @@
             this.Label_SEValue.TabIndex = 15;
             this.Label_SEValue.Text = "5";
             // 
+            // Label_SvCol
+            // 
+            this.Label_SvCol.Anchor = System.Windows.Forms.AnchorStyles.Top;
+            this.Label_SvCol.AutoSize = true;
+            this.Label_SvCol.Font = new System.Drawing.Font("MS UI Gothic", 25F);
+            this.Label_SvCol.Location = new System.Drawing.Point(940, 819);
+            this.Label_SvCol.Name = "Label_SvCol";
+            this.Label_SvCol.Size = new System.Drawing.Size(569, 67);
+            this.Label_SvCol.TabIndex = 16;
+            this.Label_SvCol.Text = "正しく保存されました";
+            this.Label_SvCol.Visible = false;
+            // 
+            // Button_Reset
+            // 
+            this.Button_Reset.Anchor = System.Windows.Forms.AnchorStyles.Top;
+            this.Button_Reset.BackColor = System.Drawing.SystemColors.Window;
+            this.Button_Reset.Font = new System.Drawing.Font("MS UI Gothic", 30F);
+            this.Button_Reset.Location = new System.Drawing.Point(1005, 922);
+            this.Button_Reset.Name = "Button_Reset";
+            this.Button_Reset.Size = new System.Drawing.Size(397, 149);
+            this.Button_Reset.TabIndex = 17;
+            this.Button_Reset.Text = "リセット";
+            this.Button_Reset.UseVisualStyleBackColor = false;
+            this.Button_Reset.Click += new System.EventHandler(this.Button_Reset_Click);
+            // 
             // Config
             // 
             this.AutoScaleDimensions = new System.Drawing.SizeF(13F, 24F);
             this.AutoScaleMode = System.Windows.Forms.AutoScaleMode.Font;
             this.ClientSize = new System.Drawing.Size(2310, 1145);
+            this.Controls.Add(this.Button_Reset);
+            this.Controls.Add(this.Label_SvCol);
             this.Controls.Add(this.Label_SEValue);
             this.Controls.Add(this.Label_BarValue);
             this.Controls.Add(this.Label_MoveValue);
@@ -223,7 +240,6 @@
             this.Controls.Add(this.Button_Cansel);
             this.Controls.Add(this.Button_Save);
             this.Controls.Add(this.label6);
-            this.Controls.Add(this.label5);
             this.Controls.Add(this.label4);
             this.Controls.Add(this.label3);
             this.Controls.Add(this.label2);
@@ -247,7 +263,6 @@
         private System.Windows.Forms.Label label2;
         private System.Windows.Forms.Label label3;
         private System.Windows.Forms.Label label4;
-        private System.Windows.Forms.Label label5;
         private System.Windows.Forms.Label label6;
         private System.Windows.Forms.Button Button_Save;
         private System.Windows.Forms.TrackBar TrackBar_Move;
@@ -257,5 +272,7 @@
         private System.Windows.Forms.Label Label_SEValue;
         private System.Windows.Forms.TrackBar TrackBar_Bar;
         private System.Windows.Forms.Button Button_Cansel;
+        private System.Windows.Forms.Label Label_SvCol;
+        private System.Windows.Forms.Button Button_Reset;
     }
 }

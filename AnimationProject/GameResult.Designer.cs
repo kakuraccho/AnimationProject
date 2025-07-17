@@ -35,6 +35,7 @@
             this.Label_HighScore = new System.Windows.Forms.Label();
             this.label5 = new System.Windows.Forms.Label();
             this.Button_Remove = new System.Windows.Forms.Button();
+            this.Label_NewHighscore = new System.Windows.Forms.Label();
             this.SuspendLayout();
             // 
             // label1
@@ -117,11 +118,25 @@
             this.Button_Remove.UseVisualStyleBackColor = true;
             this.Button_Remove.Click += new System.EventHandler(this.Button_Remove_Click);
             // 
+            // Label_NewHighscore
+            // 
+            this.Label_NewHighscore.Anchor = System.Windows.Forms.AnchorStyles.Top;
+            this.Label_NewHighscore.AutoSize = true;
+            this.Label_NewHighscore.Font = new System.Drawing.Font("MS UI Gothic", 30F);
+            this.Label_NewHighscore.ForeColor = System.Drawing.Color.Brown;
+            this.Label_NewHighscore.Location = new System.Drawing.Point(930, 664);
+            this.Label_NewHighscore.Name = "Label_NewHighscore";
+            this.Label_NewHighscore.Size = new System.Drawing.Size(532, 80);
+            this.Label_NewHighscore.TabIndex = 8;
+            this.Label_NewHighscore.Text = "ハイスコア更新!!";
+            this.Label_NewHighscore.Visible = false;
+            // 
             // GameResult
             // 
             this.AutoScaleDimensions = new System.Drawing.SizeF(13F, 24F);
             this.AutoScaleMode = System.Windows.Forms.AutoScaleMode.Font;
             this.ClientSize = new System.Drawing.Size(2310, 1145);
+            this.Controls.Add(this.Label_NewHighscore);
             this.Controls.Add(this.Label_Point);
             this.Controls.Add(this.label1);
             this.Controls.Add(this.Button_Remove);
@@ -149,5 +164,6 @@
         private System.Windows.Forms.Label Label_HighScore;
         private System.Windows.Forms.Label label5;
         private System.Windows.Forms.Button Button_Remove;
+        private System.Windows.Forms.Label Label_NewHighscore;
     }
 }

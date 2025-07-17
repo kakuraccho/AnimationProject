@@ -76,10 +76,6 @@
             this.EdgeTop = new System.Windows.Forms.PictureBox();
             this.OutZone = new System.Windows.Forms.PictureBox();
             this.Timer_Game = new System.Windows.Forms.Timer(this.components);
-            this.la_movevalue = new System.Windows.Forms.Label();
-            this.la_sevalue = new System.Windows.Forms.Label();
-            this.la_barvalue = new System.Windows.Forms.Label();
-            this.panel1 = new System.Windows.Forms.Panel();
             ((System.ComponentModel.ISupportInitialize)(this.pictureBox1)).BeginInit();
             ((System.ComponentModel.ISupportInitialize)(this.pictureBox2)).BeginInit();
             ((System.ComponentModel.ISupportInitialize)(this.pictureBox3)).BeginInit();
@@ -115,7 +111,6 @@
             ((System.ComponentModel.ISupportInitialize)(this.EdgeLeft)).BeginInit();
             ((System.ComponentModel.ISupportInitialize)(this.EdgeTop)).BeginInit();
             ((System.ComponentModel.ISupportInitialize)(this.OutZone)).BeginInit();
-            this.panel1.SuspendLayout();
             this.SuspendLayout();
             // 
             // pictureBox1
@@ -595,52 +590,11 @@
             this.Timer_Game.Interval = 10;
             this.Timer_Game.Tick += new System.EventHandler(this.Timer_Game_Tick);
             // 
-            // la_movevalue
-            // 
-            this.la_movevalue.Font = new System.Drawing.Font("MS UI Gothic", 15F);
-            this.la_movevalue.Location = new System.Drawing.Point(57, 65);
-            this.la_movevalue.Name = "la_movevalue";
-            this.la_movevalue.Size = new System.Drawing.Size(87, 40);
-            this.la_movevalue.TabIndex = 38;
-            this.la_movevalue.Text = "100";
-            this.la_movevalue.TextAlign = System.Drawing.ContentAlignment.TopRight;
-            // 
-            // la_sevalue
-            // 
-            this.la_sevalue.Font = new System.Drawing.Font("MS UI Gothic", 15F);
-            this.la_sevalue.Location = new System.Drawing.Point(57, 185);
-            this.la_sevalue.Name = "la_sevalue";
-            this.la_sevalue.Size = new System.Drawing.Size(87, 40);
-            this.la_sevalue.TabIndex = 40;
-            this.la_sevalue.Text = "100";
-            this.la_sevalue.TextAlign = System.Drawing.ContentAlignment.TopRight;
-            // 
-            // la_barvalue
-            // 
-            this.la_barvalue.Font = new System.Drawing.Font("MS UI Gothic", 15F);
-            this.la_barvalue.Location = new System.Drawing.Point(57, 126);
-            this.la_barvalue.Name = "la_barvalue";
-            this.la_barvalue.Size = new System.Drawing.Size(87, 40);
-            this.la_barvalue.TabIndex = 41;
-            this.la_barvalue.Text = "100";
-            this.la_barvalue.TextAlign = System.Drawing.ContentAlignment.TopRight;
-            // 
-            // panel1
-            // 
-            this.panel1.Controls.Add(this.la_movevalue);
-            this.panel1.Controls.Add(this.la_barvalue);
-            this.panel1.Controls.Add(this.la_sevalue);
-            this.panel1.Location = new System.Drawing.Point(2016, 502);
-            this.panel1.Name = "panel1";
-            this.panel1.Size = new System.Drawing.Size(188, 280);
-            this.panel1.TabIndex = 42;
-            // 
             // GameWindow
             // 
             this.AutoScaleDimensions = new System.Drawing.SizeF(13F, 24F);
             this.AutoScaleMode = System.Windows.Forms.AutoScaleMode.Font;
             this.ClientSize = new System.Drawing.Size(2310, 1145);
-            this.Controls.Add(this.panel1);
             this.Controls.Add(this.OutZone);
             this.Controls.Add(this.EdgeTop);
             this.Controls.Add(this.EdgeLeft);
@@ -723,7 +677,6 @@
             ((System.ComponentModel.ISupportInitialize)(this.EdgeLeft)).EndInit();
             ((System.ComponentModel.ISupportInitialize)(this.EdgeTop)).EndInit();
             ((System.ComponentModel.ISupportInitialize)(this.OutZone)).EndInit();
-            this.panel1.ResumeLayout(false);
             this.ResumeLayout(false);
             this.PerformLayout();
 
@@ -778,9 +731,5 @@
         private System.Windows.Forms.PictureBox EdgeTop;
         private System.Windows.Forms.PictureBox OutZone;
         private System.Windows.Forms.Timer Timer_Game;
-        private System.Windows.Forms.Label la_movevalue;
-        private System.Windows.Forms.Label la_sevalue;
-        private System.Windows.Forms.Label la_barvalue;
-        private System.Windows.Forms.Panel panel1;
     }
 }

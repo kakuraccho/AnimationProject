@@ -6,45 +6,19 @@ using System.Text;
 using System.Threading.Tasks;
 using System.Windows.Forms;
 using Newtonsoft.Json;
-using AnimationProject;
 
 namespace AnimationProject
 {
-    public class JsonManager
+    public class JsonManager // json管理クラス
     {
         private readonly string _filePath;
 
-        /// <summary>
-        /// JsonManagerの新しいインスタンスを初期化します。
-        /// </summary>
-        /// <param name="fileName">管理するJSONファイルの名前（例: "settings.json"）</param>
-        public JsonManager(string fileName)
+        public JsonManager(string fileName) // 新しいインスタンスを初期化
         {
             _filePath = Path.Combine(Application.StartupPath, fileName);
         }
 
-        /// <summary>
-        /// JSONファイルが存在しない場合に、指定されたデフォルトデータでファイルを初期化（作成）します。
-        /// </summary>
-        /// <typeparam name="T">データの型</typeparam>
-        /// <param name="defaultData">ファイルが存在しない場合に保存するデフォルトデータ</param>
-        public void InitializeIfNotExists<T>(T defaultData)
-        {
-            if (!File.Exists(_filePath))
-            {
-                Save(defaultData); // ファイルを保存
-                MessageBox.Show($"初期設定ファイルを作成しました: {_filePath}", "ファイル作成", MessageBoxButtons.OK, MessageBoxIcon.Information);
-            }
-        }
-
-        /// <summary>
-        /// JSONファイルを読み込み、指定された型のオブジェクトにデシリアライズします。
-        /// ファイルが存在しない場合や読み込みエラーが発生した場合は、デフォルト値を返します。
-        /// </summary>
-        /// <typeparam name="T">読み込むデータの型</typeparam>
-        /// <param name="defaultValue">ファイルが存在しない場合やエラー時に返すデフォルト値</param>
-        /// <returns>読み込んだデータ、またはデフォルト値</returns>
-        public T LoadOrDefault<T>(T defaultValue)
+        public T LoadOrDefault<T>(T defaultValue) // エラーハンドリング
         {
             try
             {
@@ -67,13 +41,7 @@ namespace AnimationProject
             }
         }
 
-        /// <summary>
-        /// 指定されたオブジェクトをJSON形式でファイルに保存します。
-        /// </summary>
-        /// <typeparam name="T">保存するデータの型</typeparam>
-        /// <param name="data">保存するオブジェクト</param>
-        /// <returns>保存が成功した場合はtrue、失敗した場合はfalse</returns>
-        public bool Save<T>(T data)
+        public bool Save<T>(T data) // 保存
         {
             try
             {
@@ -89,37 +57,20 @@ namespace AnimationProject
                 return false; // 保存失敗
             }
         }
-
-        /// <summary>
-        /// 管理対象のJSONファイルがディスク上に存在するかどうかを確認します。
-        /// </summary>
-        /// <returns>ファイルが存在すればtrue、そうでなければfalse</returns>
-        public bool FileExists()
-        {
-            return File.Exists(_filePath);
-        }
     }
 
-
-    /// <summary>
-    /// アプリケーションの一般的な設定を表すクラス。
-    /// JSONとして保存・読み込みされます。
-    /// </summary>
-    public class AppSettings
-    {
-        public int WindowWidth { get; set; } = 800;
-        public int WindowHeight { get; set; } = 600;
-        public string Theme { get; set; } = "Light";
-    }
-
-    /// <summary>
-    /// ゲームに関する特定の設定を表すクラス。
-    /// JSONとして保存・読み込みされます。
-    /// </summary>
-    public class GameSetting
+    public class GameSetting // デフォルトデータ
     {
         public int MoveSpeed { get; set; } = 5;
+        public int StnMoveSpeed { get; set; } = 5;
+
         public int BarSpeed { get; set; } = 1;
+        public int StnSpeed { get; set; } = 1;
+
         public int SeVolume { get; set; } = 5;
+        public int StnSeVolume { get; set; } = 5;
+
+
+        public int HighScore { get; set; } = 0;
     }
 }

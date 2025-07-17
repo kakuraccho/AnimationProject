@@ -31,12 +31,20 @@ namespace AnimationProject
         // 配列でpictureboxを管理
         private PictureBox[] Boxes;
 
+        // jsonファイルの読み取り
+        private JsonManager _gameSettingsManager;
+        private GameSetting _currentGameSetting;
+
+
+        int movevalue, barvalue, sevalue;
+
         #endregion
 
         public GameWindow()
         {
             InitializeComponent();
             this.Name = "GameWindow";
+            _gameSettingsManager = new JsonManager("settings.json"); // jsonファイル名を指定
 
             #region PictureBox配列
 
@@ -179,17 +187,30 @@ namespace AnimationProject
         // ---セットアップ---
         private void GameWindow_Load(object sender, EventArgs e)
         {
+            // jsonからの値
+            _currentGameSetting = _gameSettingsManager.LoadOrDefault(new GameSetting());
+            movevalue = _currentGameSetting.MoveSpeed;
+            barvalue = _currentGameSetting.BarSpeed;
+            sevalue = _currentGameSetting.SeVolume;
+            
+            double Dbarvalue = 1 + 0.1 * (barvalue - 1);
+            Bar.Width = (int)(Bar.Width * Dbarvalue);
+
             Button_Start.Visible = true;
             Label_CountDown.Visible = false;
             Label_Start.Visible = false;
             Panel.Visible = false;
-            SetPictureBoxProperties(Ball, 0, 3, -5);
+
+            SetPictureBoxProperties(Ball, 0, 3, -(movevalue));
             SetPictureBoxProperties(Bar, 1, 0, 0);
+            
+            Bar.Location = new Point((Ball.Location.X - Ball.Width / 2) - (Bar.Width / 2), Bar.Location.Y);
         }
 
         // ---スタートボタン---
         private void Button_Start_Click(object sender, EventArgs e)
         {
+
             Button_Start.Visible = false;
             Label_CountDown.Visible = true;
             Panel.Visible = true;

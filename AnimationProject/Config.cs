@@ -5,9 +5,9 @@ using System.Data;
 using System.Drawing;
 using System.Linq;
 using System.Text;
+using System.Threading;
 using System.Threading.Tasks;
 using System.Windows.Forms;
-using AnimationProject;
 
 namespace AnimationProject
 {
@@ -21,21 +21,28 @@ namespace AnimationProject
         public Config()
         {
             InitializeComponent();
-            _gameSettingsManager = new JsonManager("settings.json"); // 設定ファイル名を指定
+            _gameSettingsManager = new JsonManager("settings.json"); // jsonファイル名を指定
         }
 
         private void Config_Load(object sender, EventArgs e)
         {
-            _currentGameSetting = _gameSettingsManager.LoadOrDefault(new GameSetting()); // 設定をロード
+            // jsonからロード,代入
+            _currentGameSetting = _gameSettingsManager.LoadOrDefault(new GameSetting());
             movevalue = _currentGameSetting.MoveSpeed;
             barvalue = _currentGameSetting.BarSpeed;
             sevalue = _currentGameSetting.SeVolume;
 
+            // 結果を出力
             Label_MoveValue.Text = Convert.ToString(movevalue);
+            TrackBar_Move.Value = movevalue;
             Label_BarValue.Text = Convert.ToString(barvalue);
+            TrackBar_Bar.Value = barvalue;
             Label_SEValue.Text = Convert.ToString(sevalue);
-        }            
+            TrackBar_SE.Value = sevalue;
 
+        }
+
+        // ---TrackBarの値が変わった時---
         private void TrackBar_Move_ValueChanged(object sender, EventArgs e)
         {
             _currentGameSetting.MoveSpeed = TrackBar_Move.Value;
@@ -54,32 +61,31 @@ namespace AnimationProject
             Label_SEValue.Text = TrackBar_SE.Value.ToString();
         }
 
-        /// <summary>
-        /// Saveボタンがクリックされたときのイベントハンドラ。
-        /// 現在の設定内容をJSONファイルに保存し、フォームを閉じます。
-        /// </summary>
-        /// <param name="sender">イベントを発生させたオブジェクト</param>
-        /// <param name="e">イベントデータ</param>
-        private void Button_Save_Click(object sender, EventArgs e)
+        private void Button_Reset_Click(object sender, EventArgs e)
         {
-            // 現在の _currentGameSetting オブジェクトをJSONファイルに保存
+            _currentGameSetting.MoveSpeed = _currentGameSetting.StnMoveSpeed;
+            _currentGameSetting.BarSpeed = _currentGameSetting.StnSpeed;
+            _currentGameSetting.SeVolume = _currentGameSetting.StnSeVolume;
+            Label_MoveValue.Text = TrackBar_Move.Value.ToString();
+            Label_BarValue.Text = TrackBar_Bar.Value.ToString();
+            Label_SEValue.Text = TrackBar_SE.Value.ToString();
+        }
+
+        private async void Button_Save_Click(object sender, EventArgs e)
+        {
+            // 現在の_currentGameSetting オブジェクトをJSONファイルに保存
             if (_gameSettingsManager.Save(_currentGameSetting))
             {
-                MessageBox.Show("設定が保存されました！", "保存完了", MessageBoxButtons.OK, MessageBoxIcon.Information);
-                this.DialogResult = DialogResult.OK; // ダイアログの結果をOKに設定してフォームを閉じる
+                Label_SvCol.Visible = true;
+                await Task.Delay(1000);
+                Label_SvCol.Visible = false;
+                this.Close();
             }
         }
 
-        /// <summary>
-        /// Cancelボタンがクリックされたときのイベントハンドラ。
-        /// 設定を保存せずにフォームを閉じます。
-        /// </summary>
-        /// <param name="sender">イベントを発生させたオブジェクト</param>
-        /// <param name="e">イベントデータ</param>
         private void Button_Cansel_Click(object sender, EventArgs e)
         {
-            // 変更を保存せずにフォームを閉じる
-            this.DialogResult = DialogResult.Cancel; // ダイアログの結果をCancelに設定してフォームを閉じる
+            this.Close();
         }
     }
 }
