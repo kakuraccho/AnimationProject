@@ -6,10 +6,11 @@ using System.Text;
 using System.Threading.Tasks;
 using System.Windows.Forms;
 using Newtonsoft.Json;
+using AnimationProject;
 
 namespace AnimationProject
 {
-    internal class jsonManager
+    public class JsonManager
     {
         private readonly string _filePath;
 
@@ -17,7 +18,7 @@ namespace AnimationProject
         /// JsonManagerの新しいインスタンスを初期化します。
         /// </summary>
         /// <param name="fileName">管理するJSONファイルの名前（例: "settings.json"）</param>
-        public jsonManager(string fileName)
+        public JsonManager(string fileName)
         {
             _filePath = Path.Combine(Application.StartupPath, fileName);
         }
@@ -99,16 +100,6 @@ namespace AnimationProject
         }
     }
 
-    /// <summary>
-    /// アプリケーションのユーザーデータを表すクラス。
-    /// JSONとして保存・読み込みされます。
-    /// </summary>
-    public class Person
-    {
-        public string Name { get; set; } = "新規ユーザー";
-        public int Age { get; set; } = 20;
-        public string Email { get; set; } = "newuser@example.com";
-    }
 
     /// <summary>
     /// アプリケーションの一般的な設定を表すクラス。

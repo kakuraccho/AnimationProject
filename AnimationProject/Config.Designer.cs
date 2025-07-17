@@ -34,8 +34,8 @@
             this.label4 = new System.Windows.Forms.Label();
             this.label5 = new System.Windows.Forms.Label();
             this.label6 = new System.Windows.Forms.Label();
-            this.button1 = new System.Windows.Forms.Button();
-            this.button2 = new System.Windows.Forms.Button();
+            this.Button_Save = new System.Windows.Forms.Button();
+            this.Button_Cansel = new System.Windows.Forms.Button();
             this.TrackBar_Move = new System.Windows.Forms.TrackBar();
             this.TrackBar_Bar = new System.Windows.Forms.TrackBar();
             this.TrackBar_SE = new System.Windows.Forms.TrackBar();
@@ -113,29 +113,31 @@
             this.label6.TabIndex = 6;
             this.label6.Text = "キーバインド";
             // 
-            // button1
+            // Button_Save
             // 
-            this.button1.Anchor = System.Windows.Forms.AnchorStyles.Top;
-            this.button1.BackColor = System.Drawing.SystemColors.Info;
-            this.button1.Font = new System.Drawing.Font("MS UI Gothic", 30F);
-            this.button1.Location = new System.Drawing.Point(698, 935);
-            this.button1.Name = "button1";
-            this.button1.Size = new System.Drawing.Size(460, 149);
-            this.button1.TabIndex = 7;
-            this.button1.Text = "設定保存";
-            this.button1.UseVisualStyleBackColor = false;
+            this.Button_Save.Anchor = System.Windows.Forms.AnchorStyles.Top;
+            this.Button_Save.BackColor = System.Drawing.SystemColors.Info;
+            this.Button_Save.Font = new System.Drawing.Font("MS UI Gothic", 30F);
+            this.Button_Save.Location = new System.Drawing.Point(698, 935);
+            this.Button_Save.Name = "Button_Save";
+            this.Button_Save.Size = new System.Drawing.Size(460, 149);
+            this.Button_Save.TabIndex = 7;
+            this.Button_Save.Text = "設定保存";
+            this.Button_Save.UseVisualStyleBackColor = false;
+            this.Button_Save.Click += new System.EventHandler(this.Button_Save_Click);
             // 
-            // button2
+            // Button_Cansel
             // 
-            this.button2.Anchor = System.Windows.Forms.AnchorStyles.Top;
-            this.button2.BackColor = System.Drawing.SystemColors.Window;
-            this.button2.Font = new System.Drawing.Font("MS UI Gothic", 30F);
-            this.button2.Location = new System.Drawing.Point(1330, 935);
-            this.button2.Name = "button2";
-            this.button2.Size = new System.Drawing.Size(397, 149);
-            this.button2.TabIndex = 8;
-            this.button2.Text = "キャンセル";
-            this.button2.UseVisualStyleBackColor = false;
+            this.Button_Cansel.Anchor = System.Windows.Forms.AnchorStyles.Top;
+            this.Button_Cansel.BackColor = System.Drawing.SystemColors.Window;
+            this.Button_Cansel.Font = new System.Drawing.Font("MS UI Gothic", 30F);
+            this.Button_Cansel.Location = new System.Drawing.Point(1330, 935);
+            this.Button_Cansel.Name = "Button_Cansel";
+            this.Button_Cansel.Size = new System.Drawing.Size(397, 149);
+            this.Button_Cansel.TabIndex = 8;
+            this.Button_Cansel.Text = "キャンセル";
+            this.Button_Cansel.UseVisualStyleBackColor = false;
+            this.Button_Cansel.Click += new System.EventHandler(this.Button_Cansel_Click);
             // 
             // TrackBar_Move
             // 
@@ -218,8 +220,8 @@
             this.Controls.Add(this.TrackBar_SE);
             this.Controls.Add(this.TrackBar_Bar);
             this.Controls.Add(this.TrackBar_Move);
-            this.Controls.Add(this.button2);
-            this.Controls.Add(this.button1);
+            this.Controls.Add(this.Button_Cansel);
+            this.Controls.Add(this.Button_Save);
             this.Controls.Add(this.label6);
             this.Controls.Add(this.label5);
             this.Controls.Add(this.label4);
@@ -247,13 +249,13 @@
         private System.Windows.Forms.Label label4;
         private System.Windows.Forms.Label label5;
         private System.Windows.Forms.Label label6;
-        private System.Windows.Forms.Button button1;
-        private System.Windows.Forms.Button button2;
+        private System.Windows.Forms.Button Button_Save;
         private System.Windows.Forms.TrackBar TrackBar_Move;
         private System.Windows.Forms.TrackBar TrackBar_SE;
         private System.Windows.Forms.Label Label_MoveValue;
         private System.Windows.Forms.Label Label_BarValue;
         private System.Windows.Forms.Label Label_SEValue;
         private System.Windows.Forms.TrackBar TrackBar_Bar;
+        private System.Windows.Forms.Button Button_Cansel;
     }
 }

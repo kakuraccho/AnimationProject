@@ -37,5 +37,6 @@
 
 ## issues
 - [x] GameResult画面の表示が崩れる
+- [ ] configの値をgamewindowに反映
 - [x] ブロックの破壊が一度に複数回発生する
 - [x] バー,右端とボールの反射動作が不自然

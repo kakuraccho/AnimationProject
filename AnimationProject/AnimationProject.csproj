@@ -61,7 +61,7 @@
     <Compile Include="GameResult.Designer.cs">
       <DependentUpon>GameResult.cs</DependentUpon>
     </Compile>
-    <Compile Include="jsonManager.cs" />
+    <Compile Include="JsonManager.cs" />
     <Compile Include="Title.cs">
       <SubType>Form</SubType>
     </Compile>
