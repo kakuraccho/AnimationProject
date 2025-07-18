@@ -268,6 +268,11 @@ namespace AnimationProject
 
                     bool collidedFromHorizontal = false;
 
+                    if (Boxes[i].Visible == false)
+                    {
+                        continue;
+                    }
+
                     // ボールの移動方向とオーバーラップを考慮して反射方向を決定
                     if (BmovX[0] > 0 && overlapLeft < overlapTop && overlapLeft < overlapBottom)
                     {
@@ -336,10 +341,6 @@ namespace AnimationProject
                         }
                     }
 
-                    if (Boxes[i].Visible == false)
-                    {
-                        continue;
-                    }
 
                     // 衝突後の処理（HP減少と色変更）
                     ChangeColor(Boxes[i], i);

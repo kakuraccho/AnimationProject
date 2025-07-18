@@ -325,10 +325,12 @@
             this.Controls.Add(this.label2);
             this.Controls.Add(this.label1);
             this.DoubleBuffered = true;
+            this.KeyPreview = true;
             this.Name = "Config";
             this.Text = "Config";
             this.WindowState = System.Windows.Forms.FormWindowState.Maximized;
             this.Load += new System.EventHandler(this.Config_Load);
+            this.KeyDown += new System.Windows.Forms.KeyEventHandler(this.Config_KeyDown);
             ((System.ComponentModel.ISupportInitialize)(this.TrackBar_Move)).EndInit();
             ((System.ComponentModel.ISupportInitialize)(this.TrackBar_Bar)).EndInit();
             ((System.ComponentModel.ISupportInitialize)(this.TrackBar_SE)).EndInit();

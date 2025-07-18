@@ -4,6 +4,7 @@ using System.ComponentModel;
 using System.Data;
 using System.Drawing;
 using System.Linq;
+using System.Runtime.CompilerServices;
 using System.Text;
 using System.Threading;
 using System.Threading.Tasks;
@@ -18,9 +19,17 @@ namespace AnimationProject
 
         // jsonからの値
         int ballvalue, barvalue, sevalue;
-        int Sballvalue, Sbarvalue, Ssevalue;
         string rightkey, leftkey;
-        string Srightkey, Sleftkey;
+
+        private enum KeyBindingState // 入力待ちの状態管理
+        {
+            None,
+            WaitingForRightKey,
+            WaitingForLeftKey
+        }
+
+        private KeyBindingState _currentKeyBindingState = KeyBindingState.None;
+        private Label _activeKeyLabel = null;
 
         public Config()
         {
@@ -30,24 +39,16 @@ namespace AnimationProject
 
         #region Method
 
-        private void SetVariablesFromJson (object sender, EventArgs e)
+        private void SetVariablesFromJson()
         {
             ballvalue = _currentGameSetting.BallSpeed;
             barvalue = _currentGameSetting.BarSpeed;
-            sevalue = _currentGameSetting.SeVolume;
-            
-            Sballvalue = _currentGameSetting.StnBallSpeed;
-            Sbarvalue = _currentGameSetting.StnBarSpeed;
-            Ssevalue = _currentGameSetting.StnSeVolume;
-
+            sevalue = _currentGameSetting.SeVolume; 
             rightkey = _currentGameSetting.RightKey;
             leftkey = _currentGameSetting.LeftKey;
-
-            Srightkey = _currentGameSetting.StnRightKey;
-            Sleftkey = _currentGameSetting.StnLeftKey;
         }
 
-        private void SetVariablesToControl (object sender, EventArgs e)
+        private void SetVariablesToControl()
         {
             Label_MoveValue.Text = Convert.ToString(ballvalue);
             TrackBar_Move.Value = ballvalue;
@@ -55,16 +56,34 @@ namespace AnimationProject
             TrackBar_Bar.Value = barvalue;
             Label_SEValue.Text = Convert.ToString(sevalue);
             TrackBar_SE.Value = sevalue;
+            Label_RightKey.Text = rightkey;
+            Label_LeftKey.Text = leftkey;
         }
 
-        private void ResetJsonValues (object sender, EventArgs e)
+        private void ResetJsonValues()
         {
-            _currentGameSetting.BallSpeed = Sballvalue;
-            _currentGameSetting.BarSpeed = Sbarvalue;
-            _currentGameSetting.SeVolume = Ssevalue;
-            _currentGameSetting.RightKey = Srightkey;
-            _currentGameSetting.LeftKey = Sleftkey;
-            SetVariablesFromJson (sender, e);
+            _currentGameSetting = new GameSetting();
+            SetVariablesFromJson();
+            SetVariablesToControl();
+        }
+
+        private void ResetKeyBindingState()
+        {
+            if (_activeKeyLabel != null)
+            {
+                _activeKeyLabel.BackColor = SystemColors.Control; // 背景色を戻す
+
+                if (_currentKeyBindingState == KeyBindingState.WaitingForRightKey) 
+                {
+                    Label_RightKey.Text = rightkey;
+                }
+                else if (_currentKeyBindingState == KeyBindingState.WaitingForLeftKey)
+                {
+                    Label_LeftKey.Text = leftkey;
+                }
+            }
+            _currentKeyBindingState = KeyBindingState.None; // 状態をリセット
+            _activeKeyLabel = null; // 参照をクリア
         }
 
         #endregion
@@ -74,10 +93,10 @@ namespace AnimationProject
         {
             // jsonからロード,代入
             _currentGameSetting = _gameSettingsManager.LoadOrDefault(new GameSetting());
-            SetVariablesFromJson(sender, e);
+            SetVariablesFromJson();
+            SetVariablesToControl();
 
-            // 結果を出力
-            SetVariablesToControl(sender, e);
+            this.KeyPreview = false;
 
         }
 
@@ -101,16 +120,51 @@ namespace AnimationProject
         }
 
         // キーバインドの変更
+
+        private void Config_KeyDown(object sender, KeyEventArgs e)
+        {
+            if (_currentKeyBindingState != KeyBindingState.None)
+            {
+                string newKeyString = Convert.ToString(e.KeyCode);
+
+                if (_currentKeyBindingState == KeyBindingState.WaitingForRightKey)
+                {
+                    rightkey = newKeyString;
+                    Label_RightKey.Text = newKeyString;
+                }
+                else if (_currentKeyBindingState == KeyBindingState.WaitingForLeftKey)
+                {
+                    leftkey = newKeyString;
+                    Label_LeftKey.Text = newKeyString;
+                }
+                SetVariablesFromJson();
+                ResetKeyBindingState();
+                e.Handled = true;
+                e.SuppressKeyPress = true;
+            }
+        }
+
         private void Button_RChange_Click(object sender, EventArgs e)
         {
-            
+            ResetKeyBindingState();
+
+            _currentKeyBindingState = KeyBindingState.WaitingForRightKey;
+            _activeKeyLabel = Label_RightKey;
+
+            _activeKeyLabel.Text = "...";
+            _activeKeyLabel.BackColor = Color.LightYellow;
         }
 
         private void Button_LChange_Click(object sender, EventArgs e)
         {
+            ResetKeyBindingState();
 
+            _currentKeyBindingState= KeyBindingState.WaitingForLeftKey;
+            _activeKeyLabel = Label_LeftKey;
+
+            _activeKeyLabel.Text = "...";
+            _activeKeyLabel.BackColor = Color.LightYellow;
         }
-
 
         // ---保存,キャンセル,リセット---
         private async void Button_Save_Click(object sender, EventArgs e)
@@ -132,10 +186,8 @@ namespace AnimationProject
 
         private void Button_Reset_Click(object sender, EventArgs e)
         {
-            // 
-            ResetJsonValues (sender, e);
-            // jsonの値を反映
-            SetVariablesToControl(sender, e);
+            ResetJsonValues();
+            
         }
 
         #endregion

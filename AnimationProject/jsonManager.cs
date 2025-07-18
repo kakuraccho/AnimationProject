@@ -63,27 +63,20 @@ namespace AnimationProject
     {
         // Ballの移動量
         public int BallSpeed { get; set; } = 5;
-        public int StnBallSpeed { get; set; } = 5;
 
         // Barの移動量
         public int BarSpeed { get; set; } = 1;
-        public int StnBarSpeed { get; set; } = 1;
 
         // SEのボリューム
         public int SeVolume { get; set; } = 5;
-        public int StnSeVolume { get; set; } = 5;
 
         // ハイスコア
         public int HighScore { get; set; } = 0;
-        public int StnHighScore { get; set; } = 0;
 
         // ---キーバインド---
         // 右移動
         public string RightKey { get; set; } = "A";
-        public string StnRightKey { get; set; } = "A";
         // 左移動
         public string LeftKey { get; set; } = "D";
-        public string StnLeftKey { get; set; } = "D";
-
     }
 }
