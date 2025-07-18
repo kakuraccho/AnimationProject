@@ -17,10 +17,6 @@ namespace AnimationProject
         private JsonManager _gameSettingsManager;
         private GameSetting _currentGameSetting;
 
-        // jsonからの値
-        int ballvalue, barvalue, sevalue;
-        string rightkey, leftkey;
-
         private enum KeyBindingState // 入力待ちの状態管理
         {
             None,
@@ -41,30 +37,21 @@ namespace AnimationProject
 
         private void SetVariablesFromJson()
         {
-            ballvalue = _currentGameSetting.BallSpeed;
-            barvalue = _currentGameSetting.BarSpeed;
-            sevalue = _currentGameSetting.SeVolume; 
-            rightkey = _currentGameSetting.RightKey;
-            leftkey = _currentGameSetting.LeftKey;
+            Label_BallValue.Text = Convert.ToString(_currentGameSetting.BallSpeed);
+            TrackBar_Ball.Value = _currentGameSetting.BallSpeed;
+            Label_BarValue.Text = Convert.ToString(_currentGameSetting.BarSpeed);
+            TrackBar_Bar.Value = _currentGameSetting.BarSpeed;
+            Label_SEValue.Text = Convert.ToString(_currentGameSetting.SeVolume);
+            TrackBar_SE.Value = _currentGameSetting.SeVolume; 
+            Label_RightKey.Text = _currentGameSetting.RightKey;
+            Label_LeftKey.Text = _currentGameSetting.LeftKey;
         }
 
-        private void SetVariablesToControl()
-        {
-            Label_MoveValue.Text = Convert.ToString(ballvalue);
-            TrackBar_Move.Value = ballvalue;
-            Label_BarValue.Text = Convert.ToString(barvalue);
-            TrackBar_Bar.Value = barvalue;
-            Label_SEValue.Text = Convert.ToString(sevalue);
-            TrackBar_SE.Value = sevalue;
-            Label_RightKey.Text = rightkey;
-            Label_LeftKey.Text = leftkey;
-        }
 
         private void ResetJsonValues()
         {
             _currentGameSetting = new GameSetting();
             SetVariablesFromJson();
-            SetVariablesToControl();
         }
 
         private void ResetKeyBindingState()
@@ -75,11 +62,11 @@ namespace AnimationProject
 
                 if (_currentKeyBindingState == KeyBindingState.WaitingForRightKey) 
                 {
-                    Label_RightKey.Text = rightkey;
+                    Label_RightKey.Text = _currentGameSetting.RightKey;
                 }
                 else if (_currentKeyBindingState == KeyBindingState.WaitingForLeftKey)
                 {
-                    Label_LeftKey.Text = leftkey;
+                    Label_LeftKey.Text = _currentGameSetting.LeftKey;
                 }
             }
             _currentKeyBindingState = KeyBindingState.None; // 状態をリセット
@@ -94,17 +81,13 @@ namespace AnimationProject
             // jsonからロード,代入
             _currentGameSetting = _gameSettingsManager.LoadOrDefault(new GameSetting());
             SetVariablesFromJson();
-            SetVariablesToControl();
-
-            this.KeyPreview = false;
-
         }
 
         // ---TrackBarの値が変わった時---
         private void TrackBar_Move_ValueChanged(object sender, EventArgs e)
         {
-            _currentGameSetting.BallSpeed = TrackBar_Move.Value;
-            Label_MoveValue.Text = Convert.ToString(TrackBar_Move.Value);
+            _currentGameSetting.BallSpeed = TrackBar_Ball.Value;
+            Label_BallValue.Text = Convert.ToString(TrackBar_Ball.Value);
         }
 
         private void TrackBar_Bar_ValueChanged(object sender, EventArgs e)
@@ -129,12 +112,12 @@ namespace AnimationProject
 
                 if (_currentKeyBindingState == KeyBindingState.WaitingForRightKey)
                 {
-                    rightkey = newKeyString;
+                    _currentGameSetting.RightKey = newKeyString;
                     Label_RightKey.Text = newKeyString;
                 }
                 else if (_currentKeyBindingState == KeyBindingState.WaitingForLeftKey)
                 {
-                    leftkey = newKeyString;
+                    _currentGameSetting.LeftKey = newKeyString;
                     Label_LeftKey.Text = newKeyString;
                 }
                 SetVariablesFromJson();

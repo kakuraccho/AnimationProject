@@ -35,9 +35,6 @@ namespace AnimationProject
         private JsonManager _gameSettingsManager;
         private GameSetting _currentGameSetting;
 
-
-        int movevalue, barvalue, sevalue;
-
         #endregion
 
         public GameWindow()
@@ -189,11 +186,9 @@ namespace AnimationProject
         {
             // jsonからの値
             _currentGameSetting = _gameSettingsManager.LoadOrDefault(new GameSetting());
-            movevalue = _currentGameSetting.BallSpeed;
-            barvalue = _currentGameSetting.BarSpeed;
-            sevalue = _currentGameSetting.SeVolume;
-            
-            double Dbarvalue = 1 + 0.1 * (barvalue - 1);
+
+            // バーの長さ
+            double Dbarvalue = 1 + 0.1 * (_currentGameSetting.BarSpeed - 1);
             Bar.Width = (int)(Bar.Width * Dbarvalue);
 
             Button_Start.Visible = true;
@@ -201,10 +196,12 @@ namespace AnimationProject
             Label_Start.Visible = false;
             Panel.Visible = false;
 
-            SetPictureBoxProperties(Ball, 0, 3, -(movevalue));
+            int BallInitnialCenterX = Ball.Location.X + Ball.Width / 2;
+            int newBarInitialCenterX = BallInitnialCenterX - Bar.Width / 2;
+            Bar.Location = new Point(newBarInitialCenterX, Bar.Location.Y);
+
+            SetPictureBoxProperties(Ball, 0, 3, -(_currentGameSetting.BallSpeed));
             SetPictureBoxProperties(Bar, 1, 0, 0);
-            
-            Bar.Location = new Point((Ball.Location.X - Ball.Width / 2) - (Bar.Width / 2), Bar.Location.Y);
         }
 
         // ---スタートボタン---
@@ -406,11 +403,11 @@ namespace AnimationProject
         // ---キーボード操作---
         private void GameWindow_KeyDown(object sender, KeyEventArgs e)
         {
-            if (e.KeyCode == Keys.A)
+            if (Convert.ToString(e.KeyCode) == _currentGameSetting.RightKey)
             {
                 BmovX[1] = -5;
             }
-            else if (e.KeyCode == Keys.D)
+            else if (Convert.ToString(e.KeyCode) == _currentGameSetting.LeftKey)
             {
                 BmovX[1] = 5;
             }

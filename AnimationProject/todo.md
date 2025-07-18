@@ -1,16 +1,16 @@
 ## Nice to Have
-- [ ] configの内容
-	- [ ] キー配列の変更
-	- [x] ボールの速度変更
-	- [x] バーの長さ変更
-	- [x] SE音量
-- [ ] cofig.csの変数削除
 - [ ] x軸の移動量ふやしてランダムな動き
 - [ ] 効果音の挿入
 - [ ] SRPの実践
 - [x] jsonでconfigの内容保存
 - [x] リセットボタン
 - [x] ハイスコアの反映
+- [x] cofig.csの変数削除
+- [x] configの内容
+	- [x] キー配列の変更
+	- [x] ボールの速度変更
+	- [x] バーの長さ変更
+	- [x] SE音量
 
 ## Minimum Viable Product
 - [ ] デバッグ用のボタンなどを削除
@@ -31,8 +31,8 @@
 - [x] プレイヤーへの得点付与
 
 ## issues
-- [ ] gamewindowをloadした時のbarの位置を中央にする
-- [ ] キーバインドを入力しても反映されない
+- [x] gamewindowをloadした時のbarの位置を中央にする
+- [x] キーバインドを入力しても反映されない
 - [x] configの値をgamewindowに反映
 - [x] GameResult画面の表示が崩れる
 - [x] ブロックの破壊が一度に複数回発生する

@@ -35,10 +35,10 @@
             this.label6 = new System.Windows.Forms.Label();
             this.Button_Save = new System.Windows.Forms.Button();
             this.Button_Cansel = new System.Windows.Forms.Button();
-            this.TrackBar_Move = new System.Windows.Forms.TrackBar();
+            this.TrackBar_Ball = new System.Windows.Forms.TrackBar();
             this.TrackBar_Bar = new System.Windows.Forms.TrackBar();
             this.TrackBar_SE = new System.Windows.Forms.TrackBar();
-            this.Label_MoveValue = new System.Windows.Forms.Label();
+            this.Label_BallValue = new System.Windows.Forms.Label();
             this.Label_BarValue = new System.Windows.Forms.Label();
             this.Label_SEValue = new System.Windows.Forms.Label();
             this.Label_SvCol = new System.Windows.Forms.Label();
@@ -49,7 +49,7 @@
             this.Button_LChange = new System.Windows.Forms.Button();
             this.Label_RightKey = new System.Windows.Forms.Label();
             this.Label_LeftKey = new System.Windows.Forms.Label();
-            ((System.ComponentModel.ISupportInitialize)(this.TrackBar_Move)).BeginInit();
+            ((System.ComponentModel.ISupportInitialize)(this.TrackBar_Ball)).BeginInit();
             ((System.ComponentModel.ISupportInitialize)(this.TrackBar_Bar)).BeginInit();
             ((System.ComponentModel.ISupportInitialize)(this.TrackBar_SE)).BeginInit();
             this.SuspendLayout();
@@ -135,18 +135,18 @@
             this.Button_Cansel.UseVisualStyleBackColor = false;
             this.Button_Cansel.Click += new System.EventHandler(this.Button_Cansel_Click);
             // 
-            // TrackBar_Move
+            // TrackBar_Ball
             // 
-            this.TrackBar_Move.Anchor = System.Windows.Forms.AnchorStyles.Top;
-            this.TrackBar_Move.LargeChange = 1;
-            this.TrackBar_Move.Location = new System.Drawing.Point(817, 278);
-            this.TrackBar_Move.Maximum = 9;
-            this.TrackBar_Move.Minimum = 1;
-            this.TrackBar_Move.Name = "TrackBar_Move";
-            this.TrackBar_Move.Size = new System.Drawing.Size(418, 90);
-            this.TrackBar_Move.TabIndex = 10;
-            this.TrackBar_Move.Value = 5;
-            this.TrackBar_Move.ValueChanged += new System.EventHandler(this.TrackBar_Move_ValueChanged);
+            this.TrackBar_Ball.Anchor = System.Windows.Forms.AnchorStyles.Top;
+            this.TrackBar_Ball.LargeChange = 1;
+            this.TrackBar_Ball.Location = new System.Drawing.Point(817, 278);
+            this.TrackBar_Ball.Maximum = 9;
+            this.TrackBar_Ball.Minimum = 1;
+            this.TrackBar_Ball.Name = "TrackBar_Ball";
+            this.TrackBar_Ball.Size = new System.Drawing.Size(418, 90);
+            this.TrackBar_Ball.TabIndex = 10;
+            this.TrackBar_Ball.Value = 5;
+            this.TrackBar_Ball.ValueChanged += new System.EventHandler(this.TrackBar_Move_ValueChanged);
             // 
             // TrackBar_Bar
             // 
@@ -172,16 +172,16 @@
             this.TrackBar_SE.Value = 5;
             this.TrackBar_SE.ValueChanged += new System.EventHandler(this.TrackBar_SE_ValueChanged);
             // 
-            // Label_MoveValue
+            // Label_BallValue
             // 
-            this.Label_MoveValue.Anchor = System.Windows.Forms.AnchorStyles.Top;
-            this.Label_MoveValue.AutoSize = true;
-            this.Label_MoveValue.Font = new System.Drawing.Font("MS UI Gothic", 25F);
-            this.Label_MoveValue.Location = new System.Drawing.Point(748, 287);
-            this.Label_MoveValue.Name = "Label_MoveValue";
-            this.Label_MoveValue.Size = new System.Drawing.Size(63, 67);
-            this.Label_MoveValue.TabIndex = 13;
-            this.Label_MoveValue.Text = "5";
+            this.Label_BallValue.Anchor = System.Windows.Forms.AnchorStyles.Top;
+            this.Label_BallValue.AutoSize = true;
+            this.Label_BallValue.Font = new System.Drawing.Font("MS UI Gothic", 25F);
+            this.Label_BallValue.Location = new System.Drawing.Point(748, 287);
+            this.Label_BallValue.Name = "Label_BallValue";
+            this.Label_BallValue.Size = new System.Drawing.Size(63, 67);
+            this.Label_BallValue.TabIndex = 13;
+            this.Label_BallValue.Text = "5";
             // 
             // Label_BarValue
             // 
@@ -313,10 +313,10 @@
             this.Controls.Add(this.Label_SvCol);
             this.Controls.Add(this.Label_SEValue);
             this.Controls.Add(this.Label_BarValue);
-            this.Controls.Add(this.Label_MoveValue);
+            this.Controls.Add(this.Label_BallValue);
             this.Controls.Add(this.TrackBar_SE);
             this.Controls.Add(this.TrackBar_Bar);
-            this.Controls.Add(this.TrackBar_Move);
+            this.Controls.Add(this.TrackBar_Ball);
             this.Controls.Add(this.Button_Cansel);
             this.Controls.Add(this.Button_Save);
             this.Controls.Add(this.label6);
@@ -331,7 +331,7 @@
             this.WindowState = System.Windows.Forms.FormWindowState.Maximized;
             this.Load += new System.EventHandler(this.Config_Load);
             this.KeyDown += new System.Windows.Forms.KeyEventHandler(this.Config_KeyDown);
-            ((System.ComponentModel.ISupportInitialize)(this.TrackBar_Move)).EndInit();
+            ((System.ComponentModel.ISupportInitialize)(this.TrackBar_Ball)).EndInit();
             ((System.ComponentModel.ISupportInitialize)(this.TrackBar_Bar)).EndInit();
             ((System.ComponentModel.ISupportInitialize)(this.TrackBar_SE)).EndInit();
             this.ResumeLayout(false);
@@ -347,9 +347,9 @@
         private System.Windows.Forms.Label label4;
         private System.Windows.Forms.Label label6;
         private System.Windows.Forms.Button Button_Save;
-        private System.Windows.Forms.TrackBar TrackBar_Move;
+        private System.Windows.Forms.TrackBar TrackBar_Ball;
         private System.Windows.Forms.TrackBar TrackBar_SE;
-        private System.Windows.Forms.Label Label_MoveValue;
+        private System.Windows.Forms.Label Label_BallValue;
         private System.Windows.Forms.Label Label_BarValue;
         private System.Windows.Forms.Label Label_SEValue;
         private System.Windows.Forms.TrackBar TrackBar_Bar;
