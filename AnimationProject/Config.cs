@@ -39,8 +39,8 @@ namespace AnimationProject
         {
             Label_BallValue.Text = Convert.ToString(_currentGameSetting.BallSpeed);
             TrackBar_Ball.Value = _currentGameSetting.BallSpeed;
-            Label_BarValue.Text = Convert.ToString(_currentGameSetting.BarSpeed);
-            TrackBar_Bar.Value = _currentGameSetting.BarSpeed;
+            Label_BarValue.Text = Convert.ToString(_currentGameSetting.BarRange);
+            TrackBar_Bar.Value = _currentGameSetting.BarRange;
             Label_SEValue.Text = Convert.ToString(_currentGameSetting.SeVolume);
             TrackBar_SE.Value = _currentGameSetting.SeVolume; 
             Label_RightKey.Text = _currentGameSetting.RightKey;
@@ -92,7 +92,7 @@ namespace AnimationProject
 
         private void TrackBar_Bar_ValueChanged(object sender, EventArgs e)
         {
-            _currentGameSetting.BarSpeed = TrackBar_Bar.Value;
+            _currentGameSetting.BarRange = TrackBar_Bar.Value;
             Label_BarValue.Text = Convert.ToString(TrackBar_Bar.Value);
         }
 

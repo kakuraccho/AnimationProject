@@ -147,7 +147,7 @@
             this.DoubleBuffered = true;
             this.KeyPreview = true;
             this.Name = "GameResult";
-            this.Text = "Form1";
+            this.Text = "GameResult";
             this.WindowState = System.Windows.Forms.FormWindowState.Maximized;
             this.Load += new System.EventHandler(this.GameResult_Load);
             this.ResumeLayout(false);

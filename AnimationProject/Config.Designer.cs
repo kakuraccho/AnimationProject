@@ -113,12 +113,12 @@
             // 
             this.Button_Save.Anchor = System.Windows.Forms.AnchorStyles.Top;
             this.Button_Save.BackColor = System.Drawing.SystemColors.Info;
-            this.Button_Save.Font = new System.Drawing.Font("MS UI Gothic", 30F);
+            this.Button_Save.Font = new System.Drawing.Font("MS UI Gothic", 40F);
             this.Button_Save.Location = new System.Drawing.Point(351, 922);
             this.Button_Save.Name = "Button_Save";
             this.Button_Save.Size = new System.Drawing.Size(460, 149);
             this.Button_Save.TabIndex = 7;
-            this.Button_Save.Text = "設定保存";
+            this.Button_Save.Text = "Save";
             this.Button_Save.UseVisualStyleBackColor = false;
             this.Button_Save.Click += new System.EventHandler(this.Button_Save_Click);
             // 
@@ -126,12 +126,12 @@
             // 
             this.Button_Cansel.Anchor = System.Windows.Forms.AnchorStyles.Top;
             this.Button_Cansel.BackColor = System.Drawing.SystemColors.Window;
-            this.Button_Cansel.Font = new System.Drawing.Font("MS UI Gothic", 30F);
+            this.Button_Cansel.Font = new System.Drawing.Font("MS UI Gothic", 40F);
             this.Button_Cansel.Location = new System.Drawing.Point(1617, 922);
             this.Button_Cansel.Name = "Button_Cansel";
             this.Button_Cansel.Size = new System.Drawing.Size(397, 149);
             this.Button_Cansel.TabIndex = 8;
-            this.Button_Cansel.Text = "キャンセル";
+            this.Button_Cansel.Text = "Cansel";
             this.Button_Cansel.UseVisualStyleBackColor = false;
             this.Button_Cansel.Click += new System.EventHandler(this.Button_Cansel_Click);
             // 
@@ -221,12 +221,12 @@
             // 
             this.Button_Reset.Anchor = System.Windows.Forms.AnchorStyles.Top;
             this.Button_Reset.BackColor = System.Drawing.SystemColors.Window;
-            this.Button_Reset.Font = new System.Drawing.Font("MS UI Gothic", 30F);
+            this.Button_Reset.Font = new System.Drawing.Font("MS UI Gothic", 40F);
             this.Button_Reset.Location = new System.Drawing.Point(1005, 922);
             this.Button_Reset.Name = "Button_Reset";
             this.Button_Reset.Size = new System.Drawing.Size(397, 149);
             this.Button_Reset.TabIndex = 17;
-            this.Button_Reset.Text = "リセット";
+            this.Button_Reset.Text = "Reset";
             this.Button_Reset.UseVisualStyleBackColor = false;
             this.Button_Reset.Click += new System.EventHandler(this.Button_Reset_Click);
             // 

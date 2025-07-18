@@ -188,8 +188,8 @@ namespace AnimationProject
             _currentGameSetting = _gameSettingsManager.LoadOrDefault(new GameSetting());
 
             // バーの長さ
-            double Dbarvalue = 1 + 0.1 * (_currentGameSetting.BarSpeed - 1);
-            Bar.Width = (int)(Bar.Width * Dbarvalue);
+            double BarRatio = 1 + 0.1 * (_currentGameSetting.BarRange - 1);
+            Bar.Width = (int)(Bar.Width * BarRatio);
 
             Button_Start.Visible = true;
             Label_CountDown.Visible = false;

@@ -65,7 +65,7 @@ namespace AnimationProject
         public int BallSpeed { get; set; } = 5;
 
         // Barの移動量
-        public int BarSpeed { get; set; } = 1;
+        public int BarRange { get; set; } = 1;
 
         // SEのボリューム
         public int SeVolume { get; set; } = 5;

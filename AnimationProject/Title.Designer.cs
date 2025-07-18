@@ -41,19 +41,18 @@
             this.label1.Font = new System.Drawing.Font("MS UI Gothic", 100F);
             this.label1.Location = new System.Drawing.Point(506, 91);
             this.label1.Name = "label1";
-            this.label1.Size = new System.Drawing.Size(1305, 267);
+            this.label1.Size = new System.Drawing.Size(1210, 267);
             this.label1.TabIndex = 0;
-            this.label1.Text = "ブロック崩し";
+            this.label1.Text = "Smash It!!";
             // 
             // Button_start
             // 
-            this.Button_start.Anchor = ((System.Windows.Forms.AnchorStyles)(((System.Windows.Forms.AnchorStyles.Top | System.Windows.Forms.AnchorStyles.Left) 
-            | System.Windows.Forms.AnchorStyles.Right)));
+            this.Button_start.Anchor = System.Windows.Forms.AnchorStyles.Bottom;
             this.Button_start.BackColor = System.Drawing.SystemColors.Info;
-            this.Button_start.Font = new System.Drawing.Font("MS UI Gothic", 75F);
-            this.Button_start.Location = new System.Drawing.Point(957, 517);
+            this.Button_start.Font = new System.Drawing.Font("MS UI Gothic", 100F);
+            this.Button_start.Location = new System.Drawing.Point(742, 417);
             this.Button_start.Name = "Button_start";
-            this.Button_start.Size = new System.Drawing.Size(352, 228);
+            this.Button_start.Size = new System.Drawing.Size(786, 299);
             this.Button_start.TabIndex = 1;
             this.Button_start.Text = "start";
             this.Button_start.UseVisualStyleBackColor = false;
@@ -61,29 +60,28 @@
             // 
             // Button_modechange
             // 
-            this.Button_modechange.Anchor = ((System.Windows.Forms.AnchorStyles)(((System.Windows.Forms.AnchorStyles.Top | System.Windows.Forms.AnchorStyles.Left) 
-            | System.Windows.Forms.AnchorStyles.Right)));
+            this.Button_modechange.Anchor = System.Windows.Forms.AnchorStyles.Bottom;
             this.Button_modechange.Font = new System.Drawing.Font("MS UI Gothic", 50F);
-            this.Button_modechange.Location = new System.Drawing.Point(835, 811);
+            this.Button_modechange.Location = new System.Drawing.Point(895, 769);
             this.Button_modechange.Name = "Button_modechange";
-            this.Button_modechange.Size = new System.Drawing.Size(574, 169);
+            this.Button_modechange.Size = new System.Drawing.Size(477, 169);
             this.Button_modechange.TabIndex = 2;
-            this.Button_modechange.Text = "ModeChange";
+            this.Button_modechange.Text = "Config";
             this.Button_modechange.UseVisualStyleBackColor = true;
             this.Button_modechange.Click += new System.EventHandler(this.Button_modechange_Click);
             // 
             // button1
             // 
-            this.button1.Anchor = ((System.Windows.Forms.AnchorStyles)(((System.Windows.Forms.AnchorStyles.Top | System.Windows.Forms.AnchorStyles.Left) 
-            | System.Windows.Forms.AnchorStyles.Right)));
+            this.button1.Anchor = System.Windows.Forms.AnchorStyles.Top;
             this.button1.BackColor = System.Drawing.SystemColors.Info;
             this.button1.Font = new System.Drawing.Font("MS UI Gothic", 75F);
-            this.button1.Location = new System.Drawing.Point(1595, 696);
+            this.button1.Location = new System.Drawing.Point(1608, 555);
             this.button1.Name = "button1";
-            this.button1.Size = new System.Drawing.Size(352, 228);
+            this.button1.Size = new System.Drawing.Size(593, 228);
             this.button1.TabIndex = 3;
             this.button1.Text = "result";
             this.button1.UseVisualStyleBackColor = false;
+            this.button1.Visible = false;
             this.button1.Click += new System.EventHandler(this.button1_Click);
             // 
             // Title
@@ -97,7 +95,7 @@
             this.Controls.Add(this.label1);
             this.DoubleBuffered = true;
             this.Name = "Title";
-            this.Text = "Form1";
+            this.Text = "Title";
             this.WindowState = System.Windows.Forms.FormWindowState.Maximized;
             this.ResumeLayout(false);
             this.PerformLayout();
