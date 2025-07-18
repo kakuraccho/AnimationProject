@@ -189,7 +189,7 @@ namespace AnimationProject
         {
             // jsonからの値
             _currentGameSetting = _gameSettingsManager.LoadOrDefault(new GameSetting());
-            movevalue = _currentGameSetting.MoveSpeed;
+            movevalue = _currentGameSetting.BallSpeed;
             barvalue = _currentGameSetting.BarSpeed;
             sevalue = _currentGameSetting.SeVolume;
             

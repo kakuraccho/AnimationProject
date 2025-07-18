@@ -43,6 +43,12 @@
             this.Label_SEValue = new System.Windows.Forms.Label();
             this.Label_SvCol = new System.Windows.Forms.Label();
             this.Button_Reset = new System.Windows.Forms.Button();
+            this.label5 = new System.Windows.Forms.Label();
+            this.label7 = new System.Windows.Forms.Label();
+            this.Button_RChange = new System.Windows.Forms.Button();
+            this.Button_LChange = new System.Windows.Forms.Button();
+            this.Label_RightKey = new System.Windows.Forms.Label();
+            this.Label_LeftKey = new System.Windows.Forms.Label();
             ((System.ComponentModel.ISupportInitialize)(this.TrackBar_Move)).BeginInit();
             ((System.ComponentModel.ISupportInitialize)(this.TrackBar_Bar)).BeginInit();
             ((System.ComponentModel.ISupportInitialize)(this.TrackBar_SE)).BeginInit();
@@ -224,11 +230,85 @@
             this.Button_Reset.UseVisualStyleBackColor = false;
             this.Button_Reset.Click += new System.EventHandler(this.Button_Reset_Click);
             // 
+            // label5
+            // 
+            this.label5.Anchor = System.Windows.Forms.AnchorStyles.Top;
+            this.label5.AutoSize = true;
+            this.label5.Font = new System.Drawing.Font("MS UI Gothic", 20F);
+            this.label5.Location = new System.Drawing.Point(751, 602);
+            this.label5.Name = "label5";
+            this.label5.Size = new System.Drawing.Size(185, 54);
+            this.label5.TabIndex = 18;
+            this.label5.Text = "左移動";
+            // 
+            // label7
+            // 
+            this.label7.Anchor = System.Windows.Forms.AnchorStyles.Top;
+            this.label7.AutoSize = true;
+            this.label7.Font = new System.Drawing.Font("MS UI Gothic", 20F);
+            this.label7.Location = new System.Drawing.Point(1262, 602);
+            this.label7.Name = "label7";
+            this.label7.Size = new System.Drawing.Size(185, 54);
+            this.label7.TabIndex = 19;
+            this.label7.Text = "右移動";
+            // 
+            // Button_RChange
+            // 
+            this.Button_RChange.Anchor = System.Windows.Forms.AnchorStyles.Top;
+            this.Button_RChange.Font = new System.Drawing.Font("MS UI Gothic", 15F);
+            this.Button_RChange.Location = new System.Drawing.Point(1041, 603);
+            this.Button_RChange.Name = "Button_RChange";
+            this.Button_RChange.Size = new System.Drawing.Size(135, 54);
+            this.Button_RChange.TabIndex = 20;
+            this.Button_RChange.Text = "変更";
+            this.Button_RChange.UseVisualStyleBackColor = true;
+            this.Button_RChange.Click += new System.EventHandler(this.Button_RChange_Click);
+            // 
+            // Button_LChange
+            // 
+            this.Button_LChange.Anchor = System.Windows.Forms.AnchorStyles.Top;
+            this.Button_LChange.Font = new System.Drawing.Font("MS UI Gothic", 15F);
+            this.Button_LChange.Location = new System.Drawing.Point(1605, 603);
+            this.Button_LChange.Name = "Button_LChange";
+            this.Button_LChange.Size = new System.Drawing.Size(135, 54);
+            this.Button_LChange.TabIndex = 21;
+            this.Button_LChange.Text = "変更";
+            this.Button_LChange.UseVisualStyleBackColor = true;
+            this.Button_LChange.Click += new System.EventHandler(this.Button_LChange_Click);
+            // 
+            // Label_RightKey
+            // 
+            this.Label_RightKey.Anchor = System.Windows.Forms.AnchorStyles.Top;
+            this.Label_RightKey.AutoSize = true;
+            this.Label_RightKey.Font = new System.Drawing.Font("MS UI Gothic", 20F);
+            this.Label_RightKey.Location = new System.Drawing.Point(978, 602);
+            this.Label_RightKey.Name = "Label_RightKey";
+            this.Label_RightKey.Size = new System.Drawing.Size(57, 54);
+            this.Label_RightKey.TabIndex = 22;
+            this.Label_RightKey.Text = "A";
+            // 
+            // Label_LeftKey
+            // 
+            this.Label_LeftKey.Anchor = System.Windows.Forms.AnchorStyles.Top;
+            this.Label_LeftKey.AutoSize = true;
+            this.Label_LeftKey.Font = new System.Drawing.Font("MS UI Gothic", 20F);
+            this.Label_LeftKey.Location = new System.Drawing.Point(1542, 602);
+            this.Label_LeftKey.Name = "Label_LeftKey";
+            this.Label_LeftKey.Size = new System.Drawing.Size(58, 54);
+            this.Label_LeftKey.TabIndex = 23;
+            this.Label_LeftKey.Text = "D";
+            // 
             // Config
             // 
             this.AutoScaleDimensions = new System.Drawing.SizeF(13F, 24F);
             this.AutoScaleMode = System.Windows.Forms.AutoScaleMode.Font;
             this.ClientSize = new System.Drawing.Size(2310, 1145);
+            this.Controls.Add(this.Label_LeftKey);
+            this.Controls.Add(this.Label_RightKey);
+            this.Controls.Add(this.Button_LChange);
+            this.Controls.Add(this.Button_RChange);
+            this.Controls.Add(this.label7);
+            this.Controls.Add(this.label5);
             this.Controls.Add(this.Button_Reset);
             this.Controls.Add(this.Label_SvCol);
             this.Controls.Add(this.Label_SEValue);
@@ -274,5 +354,11 @@
         private System.Windows.Forms.Button Button_Cansel;
         private System.Windows.Forms.Label Label_SvCol;
         private System.Windows.Forms.Button Button_Reset;
+        private System.Windows.Forms.Label label5;
+        private System.Windows.Forms.Label label7;
+        private System.Windows.Forms.Button Button_RChange;
+        private System.Windows.Forms.Button Button_LChange;
+        private System.Windows.Forms.Label Label_RightKey;
+        private System.Windows.Forms.Label Label_LeftKey;
     }
 }

@@ -16,7 +16,11 @@ namespace AnimationProject
         private JsonManager _gameSettingsManager;
         private GameSetting _currentGameSetting;
 
-        int movevalue, barvalue, sevalue;
+        // jsonからの値
+        int ballvalue, barvalue, sevalue;
+        int Sballvalue, Sbarvalue, Ssevalue;
+        string rightkey, leftkey;
+        string Srightkey, Sleftkey;
 
         public Config()
         {
@@ -24,53 +28,91 @@ namespace AnimationProject
             _gameSettingsManager = new JsonManager("settings.json"); // jsonファイル名を指定
         }
 
-        private void Config_Load(object sender, EventArgs e)
+        #region Method
+
+        private void SetVariablesFromJson (object sender, EventArgs e)
         {
-            // jsonからロード,代入
-            _currentGameSetting = _gameSettingsManager.LoadOrDefault(new GameSetting());
-            movevalue = _currentGameSetting.MoveSpeed;
+            ballvalue = _currentGameSetting.BallSpeed;
             barvalue = _currentGameSetting.BarSpeed;
             sevalue = _currentGameSetting.SeVolume;
+            
+            Sballvalue = _currentGameSetting.StnBallSpeed;
+            Sbarvalue = _currentGameSetting.StnBarSpeed;
+            Ssevalue = _currentGameSetting.StnSeVolume;
 
-            // 結果を出力
-            Label_MoveValue.Text = Convert.ToString(movevalue);
-            TrackBar_Move.Value = movevalue;
+            rightkey = _currentGameSetting.RightKey;
+            leftkey = _currentGameSetting.LeftKey;
+
+            Srightkey = _currentGameSetting.StnRightKey;
+            Sleftkey = _currentGameSetting.StnLeftKey;
+        }
+
+        private void SetVariablesToControl (object sender, EventArgs e)
+        {
+            Label_MoveValue.Text = Convert.ToString(ballvalue);
+            TrackBar_Move.Value = ballvalue;
             Label_BarValue.Text = Convert.ToString(barvalue);
             TrackBar_Bar.Value = barvalue;
             Label_SEValue.Text = Convert.ToString(sevalue);
             TrackBar_SE.Value = sevalue;
+        }
+
+        private void ResetJsonValues (object sender, EventArgs e)
+        {
+            _currentGameSetting.BallSpeed = Sballvalue;
+            _currentGameSetting.BarSpeed = Sbarvalue;
+            _currentGameSetting.SeVolume = Ssevalue;
+            _currentGameSetting.RightKey = Srightkey;
+            _currentGameSetting.LeftKey = Sleftkey;
+            SetVariablesFromJson (sender, e);
+        }
+
+        #endregion
+
+        #region Event Handlers
+        private void Config_Load(object sender, EventArgs e)
+        {
+            // jsonからロード,代入
+            _currentGameSetting = _gameSettingsManager.LoadOrDefault(new GameSetting());
+            SetVariablesFromJson(sender, e);
+
+            // 結果を出力
+            SetVariablesToControl(sender, e);
 
         }
 
         // ---TrackBarの値が変わった時---
         private void TrackBar_Move_ValueChanged(object sender, EventArgs e)
         {
-            _currentGameSetting.MoveSpeed = TrackBar_Move.Value;
-            Label_MoveValue.Text = TrackBar_Move.Value.ToString();
+            _currentGameSetting.BallSpeed = TrackBar_Move.Value;
+            Label_MoveValue.Text = Convert.ToString(TrackBar_Move.Value);
         }
 
         private void TrackBar_Bar_ValueChanged(object sender, EventArgs e)
         {
             _currentGameSetting.BarSpeed = TrackBar_Bar.Value;
-            Label_BarValue.Text = TrackBar_Bar.Value.ToString();
+            Label_BarValue.Text = Convert.ToString(TrackBar_Bar.Value);
         }
 
         private void TrackBar_SE_ValueChanged(object sender, EventArgs e)
         {
             _currentGameSetting.SeVolume = TrackBar_SE.Value;
-            Label_SEValue.Text = TrackBar_SE.Value.ToString();
+            Label_SEValue.Text = Convert.ToString(TrackBar_SE.Value);
         }
 
-        private void Button_Reset_Click(object sender, EventArgs e)
+        // キーバインドの変更
+        private void Button_RChange_Click(object sender, EventArgs e)
         {
-            _currentGameSetting.MoveSpeed = _currentGameSetting.StnMoveSpeed;
-            _currentGameSetting.BarSpeed = _currentGameSetting.StnSpeed;
-            _currentGameSetting.SeVolume = _currentGameSetting.StnSeVolume;
-            Label_MoveValue.Text = TrackBar_Move.Value.ToString();
-            Label_BarValue.Text = TrackBar_Bar.Value.ToString();
-            Label_SEValue.Text = TrackBar_SE.Value.ToString();
+            
         }
 
+        private void Button_LChange_Click(object sender, EventArgs e)
+        {
+
+        }
+
+
+        // ---保存,キャンセル,リセット---
         private async void Button_Save_Click(object sender, EventArgs e)
         {
             // 現在の_currentGameSetting オブジェクトをJSONファイルに保存
@@ -87,5 +129,15 @@ namespace AnimationProject
         {
             this.Close();
         }
+
+        private void Button_Reset_Click(object sender, EventArgs e)
+        {
+            // 
+            ResetJsonValues (sender, e);
+            // jsonの値を反映
+            SetVariablesToControl(sender, e);
+        }
+
+        #endregion
     }
 }
